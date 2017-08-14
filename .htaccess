@@ -1,0 +1,21 @@
+AddType application/x-httpd-php .htm 
+AddType application/x-httpd-php .html
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} /+[^\.]+$
+
+RewriteRule ^book/([0-9]+) index.php?action=book&id=$1
+RewriteRule ^book index.php?action=book
+
+RewriteRule ^category/([0-9]+) index.php?action=category&id=$1
+RewriteRule ^category index.php?action=category
+
+RewriteRule ^cart index.php?action=cart
+
+RewriteRule ^checkout index.php?action=checkout
+
+RewriteRule ^contact index.php?action=contact
+
+ErrorDocument 404 /bookstore/index.php?action=error
