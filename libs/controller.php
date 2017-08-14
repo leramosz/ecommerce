@@ -35,6 +35,13 @@ class Controller {
 
 	}
 
+	public function author(){
+
+		//$this->view->assign('var', 'this a test');
+		$this->content = $this->view->render("author.html");
+
+	}
+
 	public function category(){
 
 		//$this->view->assign('var', 'this a test');

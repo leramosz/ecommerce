@@ -12,6 +12,9 @@ RewriteRule ^book index.php?action=book
 RewriteRule ^category/([0-9]+) index.php?action=category&id=$1
 RewriteRule ^category index.php?action=category
 
+RewriteRule ^author/([0-9]+) index.php?action=author&id=$1
+RewriteRule ^author index.php?action=author
+
 RewriteRule ^cart index.php?action=cart
 
 RewriteRule ^checkout index.php?action=checkout

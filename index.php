@@ -14,6 +14,10 @@ switch ($app->params['action']) {
 		 $app->book();
 	break;
 
+	case 'author':
+		 $app->author();
+	break;
+
 	case 'category':
 		 $app->category();
 	break;
