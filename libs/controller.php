@@ -1,8 +1,6 @@
 <?
 
 class Controller {
-
-	private $output;
 	
 	function __construct() {
 
