@@ -4,8 +4,7 @@
             <div class="container">
                 <ul class="breadcrumb pull-left">
                     <li><a href="<?=BASE_URL?>">Home</a></li>
-                    <li><a href="<?=BASE_URL?>/books">Books</a></li>
-                    <li class="active"><?=$book['name']?></li>
+                    <li class="active">Authors</li>
                 </ul><!-- /.breadcrumb -->
 
                 <!-- ========================================= BREADCRUMB SEARCH BOX ========================================= -->
@@ -42,35 +41,23 @@
                 <div class="primary-block clearfix">
                     <div class="row">
                         <div class="col-sm-4">
-                            <? if($book['hot']): ?> 
-                                <div class="hot-ribbon">
-                                    <div class="hot-ribbon-content">hot</div>
-                                </div>   
-                            <? endif; ?> 
-                            <? if($book['sale_off']): ?> 
-                                <div class="sale-ribbon">
-                                    <div class="sale-ribbon-content">sale off</div>
-                                </div> 
-                            <? endif; ?>
                             <div class="book-cover book detail-book-cover">
-                                <img src="<?=BASE_URL?>/assets/images/blank.gif" class="img-responsive" data-echo="<?=BASE_URL.'/'.$book['image']?>" alt="">
+                                <img src="<?=BASE_URL?>/assets/images/blank.gif" class="img-responsive" data-echo="<?=BASE_URL?>/assets/images/books/detail-book.jpg" alt="">
                                 <div class="fade"></div>
                             </div><!-- /.book-cover -->
                         </div><!-- /.col -->
 
                         <div class="col-sm-8">
                             <div class="book-detail-header">
-                                <h2 class="book-title"><?=$book['name']?></h2>
-                                <p class="book-author">
-                                    By <span class="book-author-name">
-                                        <a href="<?=BASE_URL.'/authors/'.$book['author']['id']?>"><?=$book['author']['name']?></a>
-                                    </span>
-                                </p>
+                                <h2 class="book-title">The Chalet school reunion</h2>
+                                <p class="book-author">By <span class="book-author-name">E.M.Brent-dyer</span></p>
                                 <div class="star-rating">
-                                <?for($i=1; $i<=5; $i++):?>
-                                    <i class="fa fa-star <?=($i <= $book['rating']) ? 'color':''?>"></i>
-                                <? endfor; ?>
-                            </div><!-- /.star-rating -->   
+                                    <i class="fa fa-star color"></i>
+                                    <i class="fa fa-star color"></i>
+                                    <i class="fa fa-star color"></i>
+                                    <i class="fa fa-star color"></i>
+                                    <i class="fa fa-star"></i>
+                                </div><!-- /.star-rating -->    
                             </div><!-- /.book-detail-header -->
 
                             <div class="book-detail-body">
@@ -78,16 +65,7 @@
                                 <div class="detail-cart-button row clearfix">
                                     <div class="pull-left col-md-6 col-sm-5 col-xs-12">
                                         <div class="detail-book-price">
-                                            <span class="price">
-                                                <? if($book['sale_off']): ?>
-                                                    <span class="price-before-discount">
-                                                        $ <?=$book['price']?>
-                                                    </span> 
-                                                    $ <?=$book['sale_off']?>
-                                                <? else: ?>
-                                                    $ <?=$book['price']?>
-                                                <? endif; ?>
-                                            </span>
+                                            <span class="price">$ 9.99</span>
                                         </div><!-- /.detail-book-price -->
                                     </div><!-- /.pull-left -->
 
@@ -116,7 +94,7 @@
 
                                 <div class="product-description">
                                     <h3>Quick Overview</h3>
-                                    <p><?=$book['overview']?></p>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices.Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices</p>
                                 </div><!-- /.product-description -->
 
                             </div><!-- /.book-detail-body -->

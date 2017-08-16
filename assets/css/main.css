@@ -1768,11 +1768,16 @@ a:active {
   font-family: 'RobotoBlack';
   text-decoration: none;
 }
+
 .book-details .book-author {
-  color: #666666;
   text-transform: uppercase;
   font-family: 'RobotoBlack';
 }
+
+.book-details .book-author a {
+    color: #666666; 
+}
+
 .featured-book {
   /*margin-bottom:40px;*/
 }
@@ -2438,6 +2443,11 @@ address {
   font-family: 'RobotoBlack';
   margin-bottom: 10px;
 }
+
+.category-list > li > .active {
+  color: #4a7637;
+}
+
 .category-list li a {
   color: #463f39;
   display: block;
@@ -2616,6 +2626,12 @@ address {
 /*===================================================================================*/
 /*  RESPONSIVE LESS
 /*===================================================================================*/
+@media (min-width: 784px) {
+  .book-details {
+    width: 200px
+  }
+}
+
 @media (min-width: 980px) and (max-width: 1278px) {
   /* phone, tablet */
   .navbar-top-bar.navbar-static-top {

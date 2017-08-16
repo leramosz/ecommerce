@@ -4,78 +4,73 @@ class Database {
 
 	private $link;
 	private $sql;
+	private $selectTable;
+	private $joinTable;
 	
 	function __construct() {
 		
 		//connecting to the mysql database
-		$this->link = new mysqli('localhost', 'leo', '3eM9FN5g7ubnS9IW', 'dpa');
+		$this->link = new mysqli('localhost', 'leo', '3eM9FN5g7ubnS9IW', 'bookstore');
 		mysqli_set_charset( $this->link, 'utf8');
 	
 	}
 
-	// public function columns() {
+	public function selectTable($table) {
+		$this->selectTable = $table;
+	}
 
-	// 	//Creating columns
-	// 	$escaped_values = array_map(array($this->link, 'real_escape_string'), $this->info['columns']);
-	// 	array_walk($escaped_values, function(&$item) { $item = $this->table.".".$item; });
-	// 	$values  = implode(",", $escaped_values);
+	public function joinTable($table) {
+		$this->joinTable = $table;
+	}	
 
-	// 	return $values;
+	public function select($columns) {
 
-	// }
+		$columns = (is_array($columns)) ? $this->columns($columns) : $columns;
+		$this->sql = "SELECT ".$columns." FROM ".$this->selectTable;
+		return $this;
+	}
 
-	// public function select() {
+	public function join($condition) {
 
-	// 	$columns = $this->columns();
-	// 	$this->sql = "SELECT ".$columns." FROM ".$this->table;
-	// 	return $this;
-	// }
+		list($key, $value) = each($condition);
+		$this->sql .= " INNER JOIN ".$this->joinTable." ON ".$this->selectTable.".".$key." = ".$this->joinTable.".".$value;
+		return $this;
+	}
 
-	// public function where($condition, $table = false) {
+	public function where($condition, $table = false) {
 
-	// 	$table = ($table) ? $table : $this->table;
-	// 	list($key, $value) = each($condition);
+		$table = ($table) ? $table : $this->selectTable;
+		list($key, $value) = each($condition);
+		$this->sql .= " WHERE ".$table.".".$key." = ".$value;
+		return $this;
 
-	// 	$this->sql .= " WHERE ".$table.".".$key."_id = ".$value;
-	// 	return $this;
+	}
 
-	// }
+	public function query() {
 
-	// public function and($condition, $table = false) {
-
-	// 	$table = ($table) ? $table : $this->table;
-	// 	list($key, $value) = each($condition);
-
-	// 	$this->sql .= " AND ".$table.".".$key."_id = ".$value;
-	// 	return $this;
-
-	// }
-
-	// public function join($parent, $child) {
+		$output = array();
 		
-	// 	$this->sql .= " INNER JOIN ".$parent['name']." ON ".$parent['name'].".".$parent['table']['key']." = ".$child["name"].".".$parent['table']['key'];
-	// }
+		$result = $this->link->query($this->sql);
+		while($row = $result->fetch_assoc()) {
+			$output[] = $row;
+ 		}
 
-	// public function on($key) {
-	// 	$this->sql .= " ON ".$this->table.".".$key." = ".$this->info['parents'][$key].".id";
-	// }
+ 		$this->sql = '';
 
-	// public function sql(){
-	// 	return $this->sql;
-	// }
+ 		return $output;
 
-	// public function run() {
+	}
 
-	// 	$output = array();
+	public function columns($columns) {
 
-	// 	$result = $this->link->query($this->sql);
-	// 	while($row = $result->fetch_assoc()) {
-	// 		$output[] = $row;
- // 		}
+		//Creating columns
+		$escaped_values = array_map(array($this->link, 'real_escape_string'), $columns);
+		array_walk($escaped_values, function(&$item) { $item = $this->selectTable.".".$item; });
+		$columns  = implode(",", $escaped_values);
 
- // 		return $output;
+		return $columns;
 
-	// }
+	}
 
 }
 

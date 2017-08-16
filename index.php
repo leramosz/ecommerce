@@ -10,16 +10,12 @@ $app = new Controller();
 
 switch ($app->params['action']) {
 	
-	case 'book':
-		 $app->book();
+	case 'books':
+		 $app->books();
 	break;
 
-	case 'author':
-		 $app->author();
-	break;
-
-	case 'category':
-		 $app->category();
+	case 'authors':
+		 $app->authors();
 	break;
 
 	case 'cart':
@@ -32,6 +28,10 @@ switch ($app->params['action']) {
 
 	case 'contact':
 		 $app->contact();
+	break;
+
+	case 'wishlist':
+		 $app->wishlist();
 	break;
 
 	case 'error':

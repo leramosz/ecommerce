@@ -4,7 +4,9 @@
             <div class="container">
                 <ul class="breadcrumb pull-left">
                     <li><a href="<?=BASE_URL?>">Home</a></li>
-                    <li><a href="<?=BASE_URL?>/category">Books</a></li>
+                    <? if(isset($page)): ?>
+                        <li><a href="<?=BASE_URL?>/<?=$page?>"><?=$page?></a></li>
+                    <? endif; ?>
                     <li class="active">not found</li>
                 </ul><!-- /.breadcrumb -->
 

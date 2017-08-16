@@ -6,19 +6,19 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} /+[^\.]+$
 
-RewriteRule ^book/([0-9]+) index.php?action=book&id=$1
-RewriteRule ^book index.php?action=book
+RewriteRule ^books/genre/([0-9]+) index.php?action=books&sub-action=genre&genre_id=$1
+RewriteRule ^books/([0-9]+) index.php?action=books&book_id=$1
+RewriteRule ^books index.php?action=books
 
-RewriteRule ^category/([0-9]+) index.php?action=category&id=$1
-RewriteRule ^category index.php?action=category
-
-RewriteRule ^author/([0-9]+) index.php?action=author&id=$1
-RewriteRule ^author index.php?action=author
+RewriteRule ^authors/([0-9]+) index.php?action=authors&author_id=$1
+RewriteRule ^authors index.php?action=authors
 
 RewriteRule ^cart index.php?action=cart
 
 RewriteRule ^checkout index.php?action=checkout
 
 RewriteRule ^contact index.php?action=contact
+
+RewriteRule ^wishlist index.php?action=wishlist
 
 ErrorDocument 404 /bookstore/index.php?action=error

@@ -1,387 +1,245 @@
+<div class="content">
+    
+    <div class="breadcrumb-container">
+        <div class="container">
+            <ul class="breadcrumb pull-left">
+                <li><a href="<?=BASE_URL?>">Home</a></li>
+                <li><a href="<?=BASE_URL?>/authors">Authors</a></li>
+                <li class="active"><?=$author['name']?></li>
+            </ul><!-- /.breadcrumb -->
 
-    <div class="content">
-        <div class="breadcrumb-container">
-            <div class="container">
-                <ul class="breadcrumb pull-left">
-                    <li><a href="<?=BASE_URL?>">Home</a></li>
-                    <li><a href="<?=BASE_URL?>/category">Books</a></li>
-                    <li class="active">Teen Books</li>
-                </ul><!-- /.breadcrumb -->
-
-                <!-- ========================================= BREADCRUMB SEARCH BOX ========================================= -->
-                <ul class="list-unstyled search-box pull-right">
-                    <li data-target="#search" data-toggle="sub-header"><button type="button" class="btn btn-primary-dark search-button"><i class="fa fa-search icon"></i></button>
-                        <div class="row search-action sub-header" id="search">
-                            <div class="col-sm-8 col-xs-12 no-padding-right">
-                                <div class="input-group">
-                                    <span class="input-group-btn"><button class="btn btn-search" type="button"><i class="fa fa-search icon"></i></button></span>
-                                    <input type="text" class="form-control search-book" placeholder="Search books...">
-                                </div><!-- /.input-group -->
-                            </div><!-- /.col -->
-
-                            <div class="col-sm-4 col-xs-12 select-wrapper" style="padding:0px;">
-                                <select id="id_select" class="selectpicker">
-                                    <option selected>All Category</option>
-                                    <option>Books</option>
-                                    <option>Textbooks</option>
-                                    <option>Audiobooks</option>
-                                    <option>Magazines</option>
-                                    <option>Kids</option>
-                                </select>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </li>
-                </ul><!-- /.search-box -->
-                <!-- ========================================= BREADCRUMB SEARCH BOX : END ========================================= -->        
-
-            </div><!-- /.container -->
-        </div><!-- /.breadcrumb-container -->
-
-        <div class="book-detail page">
-            <div class="container">
-                <div class="primary-block clearfix">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="book-cover book detail-book-cover">
-                                <img src="<?=BASE_URL?>/assets/images/blank.gif" class="img-responsive" data-echo="<?=BASE_URL?>/assets/images/books/detail-book.jpg" alt="">
-                                <div class="fade"></div>
-                            </div><!-- /.book-cover -->
+            <!-- ========================================= BREADCRUMB SEARCH BOX ========================================= -->
+            <ul class="list-unstyled search-box pull-right">
+                <li data-target="#search" data-toggle="sub-header"><button type="button" class="btn btn-primary-dark search-button"><i class="fa fa-search icon"></i></button>
+                    <div class="row search-action sub-header" id="search">
+                        <div class="col-sm-8 col-xs-12 no-padding-right">
+                            <div class="input-group">
+                                <span class="input-group-btn"><button class="btn btn-search" type="button"><i class="fa fa-search icon"></i></button></span>
+                                <input type="text" class="form-control search-book" placeholder="Search books...">
+                            </div><!-- /.input-group -->
                         </div><!-- /.col -->
 
-                        <div class="col-sm-8">
-                            <div class="book-detail-header">
-                                <h2 class="book-title">The Chalet school reunion</h2>
-                                <p class="book-author">By <span class="book-author-name">E.M.Brent-dyer</span></p>
-                                <div class="star-rating">
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star color"></i>
-                                    <i class="fa fa-star"></i>
-                                </div><!-- /.star-rating -->    
-                            </div><!-- /.book-detail-header -->
-
-                            <div class="book-detail-body">
-
-                                <div class="detail-cart-button row clearfix">
-                                    <div class="pull-left col-md-6 col-sm-5 col-xs-12">
-                                        <div class="detail-book-price">
-                                            <span class="price">$ 9.99</span>
-                                        </div><!-- /.detail-book-price -->
-                                    </div><!-- /.pull-left -->
-
-                                    <div class="pull-right col-md-6 col-sm-7 col-xs-12">
-                                        <div class="row product-actions">
-
-                                            <a href="<?=BASE_URL?>/checkout" class="col-sm-6 btn btn-primary btn-addToCart"><i class="icon-plus fa fa-plus-circle"></i>Add to Cart</a>
-                                            <div class="quantity book-detail-quantity col-xs-4 col-lg-3">  
-                                                <div class="quantity-block">          
-                                                    <div class="quant-input">
-                                                        <div class="arrows">
-                                                            <div class="arrow plus gradient"><span class="ir"></span></div>
-                                                            <div class="arrow minus gradient"><span class="ir"></span></div>
-                                                        </div><!-- /.arrows -->
-                                                        <input class="txt-quantity" type="text" value="1"/>
-                                                    </div><!-- /.quant-input -->  
-                                                </div><!-- /.quantity-block -->                             
-                                            </div><!-- /.col -->   
-                                            <button title="favourite" class="hidden-xs btn btn-secondary btn-add-to-wishlist col-xs-2 " type="button"><span class="icon glyphicon glyphicon-heart"></span></button>
-
-                                        </div><!-- /.row -->
-                                    </div><!-- /.pull-right -->
-                                </div><!-- /.detail-cart-button -->
-
-                                <div class="clearfix"></div>
-
-                                <div class="product-description">
-                                    <h3>Quick Overview</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit.Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices.Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices</p>
-                                </div><!-- /.product-description -->
-
-                            </div><!-- /.book-detail-body -->
+                        <div class="col-sm-4 col-xs-12 select-wrapper" style="padding:0px;">
+                            <select id="id_select" class="selectpicker">
+                                <option selected>All Category</option>
+                                <option>Books</option>
+                                <option>Textbooks</option>
+                                <option>Audiobooks</option>
+                                <option>Magazines</option>
+                                <option>Kids</option>
+                            </select>
                         </div><!-- /.col -->
                     </div><!-- /.row -->
+                </li>
+            </ul><!-- /.search-box -->
+            <!-- ========================================= BREADCRUMB SEARCH BOX : END ========================================= -->        
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb-container -->
 
-                    <div class="tab-holder clearfix">
-                        <div class="book-additional-details">
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs book-detail-tab">
-                                <li class="active" role="presentation"><a href="#more" data-toggle="tab">More About This Book</a></li>
-                                <li role="presentation"><a href="#product-details" data-toggle="tab">Product Details</a></li>
-                                <li role="presentation"><a href="#shipping" data-toggle="tab">Shipping</a></li>
-                                <li role="presentation"><a href="#first-chapter" data-toggle="tab">First Chapter</a></li>
-                            </ul><!-- /.nav -->
-
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="more" role="tabpanel">
-                                    <h3>Consectetur adipisicing elit, sed do eiusmod</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
-                                    <p>Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan.Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor.Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor.</p>
-                                </div><!-- /.tab-pane -->
-
-                                <div class="tab-pane" id="product-details" role="tabpanel">
-                                    <ul class="list-unstyled list-kybook uppercase">
-                                        <li>Sed do eiusmod tempor incididunt ut labore et dolore</li>
-                                        <li>Sed do eiusmod tempor incididunt ut labore et dolore</li>
-                                        <li>Sed do eiusmod tempor incididunt ut labore et dolore</li>
-                                        <li>Sed do eiusmod tempor incididunt ut labore et dolore</li>
-                                    </ul>
-                                </div>
-
-                                <div class="tab-pane" id="shipping" role="tabpanel">
-                                    <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p> 
-                                </div><!-- /.tab-pane -->
-
-                                <div class="tab-pane" id="first-chapter" role="tabpanel">
-                                    <h3>Consectetur adipisicing elit, sed do eiusmod</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ut gravida lorem. Ut turpis felis, pulvinar a semper sed, adipiscing id dolor. Pellentesque auctor nisi id magna consequat sagittis.</p>
-                                    <p>Curabitur dapibus enim sit amet elit pharetra tincidunt feugiat nisl imperdiet. Ut convallis libero in urna ultrices accumsan.Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor.Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor.</p>
-                                </div><!-- /.tab-pane -->
-
-                            </div><!-- /.tab-content -->
-                        </div><!-- /.book-additional-details -->
+    <div class="book-detail page">
+            
+        <div class="container">
+            <div class="primary-block clearfix"> 
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="author-dp">
+                            <img src="<?=BASE_URL.$author['image']?>" alt="">
+                        </div>
                     </div><!-- /.col -->
-                </div><!-- /.primary-block -->
-            </div><!-- /.container -->
 
-            <!-- ========================================= RELATE BOOKS MODULE ========================================= -->
-            <div class="container">
-                <div class="wow fadeInUp">
-                    <div class="module block-relate-books module-block">
-                        <div class="module-heading">
-                            <h2 class="module-title">Relate Books</h2>
-                            <div class="customNavigation">
-                                <a href="#" data-target="#relate-book-carousel" class="btn btn-navigation left-nav-arrow owl-prev"><i class='icon fa fa-caret-left'></i></a>
-                                <a href="#" data-target="#relate-book-carousel" class="btn btn-navigation right-nav-arrow owl-next"><i class='icon fa fa-caret-right'></i></a>  
-                            </div><!-- /.customNavigation -->
-                            <p class="module-subtitle">Do eiusmod tempor incid... et dolore magna aliqua</p>
-                        </div><!-- /.module-heading -->
+                    <div class="col-sm-9">
+                        <div class="book-detail-header">
+                            <h2 class="book-title"><?=$author['name']?></h2>  
+                        </div><!-- /.book-detail-header -->
 
-                        <div class="module-body">
-                            <div class="books">
-
-                                <div id="relate-book-carousel" class="owl-carousel home-owl-carousel relate-books">
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/1.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">duis aute</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                       
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="hot-ribbon"><div class="hot-ribbon-content">hot</div></div>
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/2.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div>
-                                            </div><!-- /.item -->
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">voluptate</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="sale-ribbon"><div class="sale-ribbon-content">sale off</div></div>
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/3.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price"><span class="price-before-discount">$ 9.99</span> $ 4.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">fugiat nulla</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/4.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">sunt</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/5.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">sunt</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="hot-ribbon"><div class="hot-ribbon-content">hot</div></div>
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/6.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">sunt</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="sale-ribbon"><div class="sale-ribbon-content">sale off</div></div>
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/7.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price"><span class="price-before-discount">$ 9.99</span> $ 4.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">sunt</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                    <div class="item item-carousel single-book">
-                                        <div class="book">
-                                            <div class="book-cover">
-                                                <img alt="" src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL?>/assets/images/relate-books/8.jpg">
-                                                <div class="fade"></div>
-                                                <div class="book-price">
-                                                    <span class="price">$ 9.99</span>
-                                                </div><!-- /.book-price -->
-                                            </div><!-- /.book-cover -->
-
-                                            <div class="book-details">
-                                                <h3 class="book-title">
-                                                    <a href="<?=BASE_URL?>/book">sunt</a>
-                                                </h3>
-                                                <p class="book-author">dolor sit</p>
-                                                <div class="star-rating">
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star color"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div><!-- /.star-rating -->
-                                            </div><!-- /.book-details -->
-                                        </div><!-- /.book -->                           
-                                    </div><!-- /.item -->
-
-                                </div><!-- /#relate-book-carousel -->                   
-                            </div><!-- /.books -->
-                        </div><!-- /.module-body -->
-                    </div><!-- /.module -->
+                        <div class="book-detail-body">
+                            <div class="product-description">
+                                <p><?=$author['biography']?></p>
+                            </div><!-- /.product-description -->
+                        </div><!-- /.book-detail-body -->
+                    </div><!-- /.col -->
                 </div><!-- /.row -->
-            </div><!-- /.container -->
-            <!-- ========================================= RELATE BOOKS MODULE : END ========================================= --></div><!-- /.book-detail page -->
-            <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;"><img src="<?=BASE_URL?>/assets/images/top-scroll.png" alt="" ></a>
-        </div>
- 
-    </div><!-- /.container -->
+            </div><!-- /.primary-block -->
+        </div><!-- /.container -->
+
+        <!-- ========================================= RELATE BOOKS MODULE ========================================= -->
+
+        <div class="container">
+            <div class="wow fadeInUp">
+                <div class="module block-relate-books module-block">
+                    
+                    <div class="module-heading">
+                        <h2 class="module-title">Books</h2>
+                        <div class="customNavigation">
+                             <ul id="myTab" class="nav nav-tabs grid-list-view-buttons" role="tablist">
+                                <? if(count($author['books']) < 4): ?>             
+                                    <li role="presentation" class="active">
+                                        <a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab">
+                                            <span class="glyphicon glyphicon-th-list active"></span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </a>
+                                    </li>
+                                <? else: ?>
+                                    <li role="presentation" class="active">
+                                        <a href="#grid" class="btn navbar-btn" role="tab" data-toggle="tab">
+                                            <span class="glyphicon glyphicon-th active"></span>
+                                        </a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a href="#list" class="btn navbar-btn" role="tab" data-toggle="tab">
+                                        <span class="glyphicon glyphicon-th-list"></span>
+                                        </a>
+                                    </li>
+                                <? endif; ?>
+                            </ul><!-- /.nav -->
+                        </div>
+                        <p class="module-subtitle">Do eiusmod tempor incid... et dolore magna aliqua</p>
+                    </div><!-- /.module-heading -->
+
+                </div>
+
+                <div class="tab-content">
+                    
+                    <div class="tab-pane wow fadeInUp <?=(count($author['books']) < 4) ? 'active':''?>" id="list" role="tabpanel" style="visibility: visible; animation-name: fadeInUp;">
+                        <? foreach($author['books'] as $book): ?>
+                            <div class="featured-book">   
+                                <div class="books clearfix">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-5">
+                                            <div class="book">
+                                                <? if($book['hot']): ?> 
+                                                    <div class="hot-ribbon">
+                                                        <div class="hot-ribbon-content">hot</div>
+                                                    </div>   
+                                                <? endif; ?> 
+                                                <? if($book['sale_off']): ?> 
+                                                    <div class="sale-ribbon">
+                                                        <div class="sale-ribbon-content">sale off</div>
+                                                    </div> 
+                                                <? endif; ?>
+                                                <div class="book-cover">
+                                                    <img class="img-responsive" alt="" width="193" height="261" src="<?=BASE_URL.$book['image']?>">
+                                                    <div class="fade"></div>
+                                                    <div class="book-price">
+                                                        <span class="price">
+                                                            <? if($book['sale_off']): ?>
+                                                                <span class="price-before-discount">
+                                                                    $ <?=$book['price']?>
+                                                                </span> 
+                                                                $ <?=$book['sale_off']?>
+                                                            <? else: ?>
+                                                                $ <?=$book['price']?>
+                                                            <? endif; ?>
+                                                        </span>
+                                                    </div><!-- /.book-price -->
+                                                </div><!-- /.book-cover -->
+                                            </div><!-- /.book -->
+                                        </div><!-- /.col -->
+
+                                        <div class="col-md-9 col-sm-7">
+                                            <div class="book-details book-details-list-view">
+                                                <h3 class="book-title">
+                                                    <a href="<?=BASE_URL.'/books/'.$book['id']?>"><?=$book['name']?></a>
+                                                </h3>
+                                                <div class="star-rating">
+                                                    <?for($i=1; $i<=5; $i++):?>
+                                                        <i class="fa fa-star <?=($i <= $book['rating']) ? 'color':''?>"></i>
+                                                    <? endfor; ?>
+                                                </div><!-- /.star-rating -->                                
+                                            </div><!-- /.book-details -->
+
+                                            <div class="featured-book-content">
+                                                <p class="hidden-sm hidden-md"><?=$book['overview']?></p>
+
+                                            </div><!-- /.featured-book-content -->
+                                            <div class="actions">
+                                                <a class="add-to-cart" title="Add to Cart" href="http://localhost/bookstore/checkout"><i class="icon-plus fa fa-plus-circle"></i></a>
+                                                <a class="add-to-cart" title="Favourite" href="#"><i class="icon-heart fa fa-heart"></i></a>
+                                            </div><!-- /.actions -->
+                                        </div><!-- /.col -->
+                                    </div><!-- /.row -->
+                                </div><!-- /.books -->
+                            </div><!-- /.feature-book -->
+                        <? endforeach; ?>
+                    </div><!-- /.tab-pane -->
+
+                    <div class="tab-pane  wow fadeInUp <?=(count($author['books']) >= 4) ? 'active':''?>" id="grid" role="tabpanel" style="visibility: visible; animation-name: fadeInUp;">
+                    
+                        <div class="category-books books grid-view">
+                            <div class="row">
+                               <? foreach($author['books'] as $book): ?>
+                                    <div class="col-md-3 col-sm-6">
+                                        <div class="book">      
+                                            <? if($book['hot']): ?> 
+                                                <div class="hot-ribbon">
+                                                    <div class="hot-ribbon-content">hot</div>
+                                                </div>   
+                                            <? endif; ?> 
+                                            <? if($book['sale_off']): ?> 
+                                                <div class="sale-ribbon">
+                                                    <div class="sale-ribbon-content">sale off</div>
+                                                </div> 
+                                            <? endif; ?>
+                                            <div class="book-cover">
+                                                <div class="book-inner">
+                                                    <img class="img-responsive" alt="" width="193" height="261" src="<?=BASE_URL.$book['image']?>">
+                                                    <div class="fade"></div>
+                                                    <div class="book-price">
+                                                        <span class="price">
+                                                            <? if($book['sale_off']): ?>
+                                                                <span class="price-before-discount">
+                                                                    $ <?=$book['price']?>
+                                                                </span> 
+                                                                $ <?=$book['sale_off']?>
+                                                            <? else: ?>
+                                                                $ <?=$book['price']?>
+                                                            <? endif; ?>                     
+                                                        </span>
+                                                    </div><!-- /.book-price -->
+                                                    <div class="cart animate-effect">
+                                                        <div class="action">
+                                                            <a class="add-to-cart" href="http://localhost/bookstore/book" title="Add to Cart">
+                                                                <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                            </a>
+                                                            <a class="add-to-cart" href="#" title="Favourite">
+                                                                <i class="icon icon-heart fa fa-heart"></i>
+                                                            </a>
+                                                        </div><!-- /.action -->
+                                                    </div><!-- /.cart -->
+                                                </div><!-- /.book-inner -->
+                                            </div><!-- /.book-cover -->
+
+                                            <div class="book-details">
+                                                <h3 class="book-title">
+                                                    <a href="<?=BASE_URL.'/books/'.$book['id']?>"> 
+                                                        <?=$book['name']?>
+                                                    </a>
+                                                </h3>
+                                                <div class="star-rating">
+                                                    <?for($i=1; $i<=5; $i++):?>
+                                                        <i class="fa fa-star <?=($i <= $book['rating']) ? 'color':''?>"></i>
+                                                    <? endfor; ?>
+                                                </div><!-- /.star-rating -->
+                                            </div><!-- /.book-details -->
+                                        </div><!-- /.book -->
+                                    </div> <!-- /.col -->
+                                <? endforeach; ?>
+                            </div> <!-- /.row -->
+                        </div><!-- /.category-books -->
+                    </div><!-- /.tab-pane -->
+
+                </div> <!-- /.tab-content -->
+
+            </div> <!-- /.wow -->
+
+        </div><!-- /.module -->
+        <!-- ========================================= RELATE BOOKS MODULE : END ========================================= -->
+    </div><!-- /.book-detail page -->
+     
+        <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;"><img src="<?=BASE_URL?>/assets/images/top-scroll.png" alt="" ></a>
+
+</div>
