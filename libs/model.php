@@ -25,6 +25,8 @@ class Model {
 
 		$new_books = array();
 
+
+
 		$this->db->selectTable('book');
 		$this->db->select(array('id', 'name', 'price', 'sale_off', 'hot', 'rating', 'image'))
 					->where(array('new' => 1));
@@ -98,13 +100,42 @@ class Model {
 
 		if (isset($book[0])) {
 
+			// getting book's author
 			$this->db->selectTable('author');
 			$this->db->joinTable('book');
 			$this->db->select(array('id', 'name'))->join(array('id' => 'author_id'))
 					->where(array('id' => $book_id), "book");
 
-
 			$book[0]['author'] = $this->db->query()[0];
+
+			// getting related books
+			$this->db->selectTable('book');
+			$this->db->joinTable('book_related');
+			$this->db->select(array('id', 'name', 'overview', 'price', 'hot', 'sale_off', 'rating', 'image'))
+						->join(array('id' => 'book_related_id'));
+
+			$this->db->selectTable('book_related');
+			$this->db->joinTable('book', 'b');
+			$this->db->join(array('book_id' => 'id'))
+						->where(array('id' => $book_id), 'b');
+
+			$book[0]['related_books'] = $this->db->query();
+
+			if ($book[0]['related_books']) {
+
+				$this->db->selectTable('author');
+				$this->db->joinTable('book');
+
+				foreach($book[0]['related_books'] as &$related_book) {
+
+					$this->db->select(array('id', 'name'))->join(array('id' => 'author_id'))
+								->where(array('id' => $related_book['id']), "book");
+
+					$related_book['author'] = $this->db->query()[0];
+					
+				}
+
+			}
 
 			return $book[0];
 
@@ -114,7 +145,7 @@ class Model {
 
 	}
 
-	function getAuthors($author_id = false) {
+	function getAuthor($author_id = false) {
 
 		$author = array();
 
@@ -193,6 +224,84 @@ class Model {
 
 		}
 		return false;
+	}
+
+	public function getAuthors($genre_id = false) {
+
+		$authors = array();
+
+		$this->db->selectTable('author');
+		$this->db->select(array('id', 'name', 'biography', 'image'));
+
+		if ($genre_id) {
+
+			$this->db->joinTable('book');
+			$this->db->join(array("id" => "author_id"));
+
+			$this->db->selectTable('book');
+			$this->db->joinTable('book_genre');
+			$this->db->join(array("id" => "book_id"));
+
+			$this->db->	where(array('genre_id' => $genre_id), "book_genre");
+
+		}
+
+		$authors = $this->db->query();
+
+		return $authors;
+	}
+
+	public function getWishlist() {
+
+		$wishlist = array();
+
+		$this->db->selectTable('book');
+		$this->db->select(array('id', 'name', 'price', 'overview', 'sale_off', 'hot', 'rating', 'image'));
+
+		$this->db->joinTable('wishlist');
+		$this->db->join(array("id" => "book_id"));
+
+		$this->db->selectTable('wishlist');
+		$this->db->joinTable('user');
+		$this->db->join(array("user_id" => "id"))->where(array('id' => USER), 'user');
+
+		$wishlist = $this->db->query();
+
+		return $wishlist;
+
+	}
+
+	public function addToFavourite($fields) {
+
+		if ($this->db->insert('wishlist', $fields)) {
+			return "Added to Favourite";
+		} else {
+			return "Error";
+		}
+
+	}
+
+	public function removeFromFavourite($fields) {
+		if ($this->db->delete('wishlist', $fields)) {
+			return "Removed from Favourite";
+		} else {
+			return "Error";
+		}
+	}
+
+	public function getCartBooks($books) {
+
+		$cart_books = array();
+		
+		$books_id = array_keys($books);
+
+		$this->db->selectTable('book');
+		$this->db->select(array('id', 'name', 'price', 'sale_off', 'image'))
+					->where(array('id' => $books_id));
+
+		$cart_books = $this->db->query();
+
+		return $cart_books;
 	}
 
 }

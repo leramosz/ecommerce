@@ -10,6 +10,7 @@ RewriteRule ^books/genre/([0-9]+) index.php?action=books&sub-action=genre&genre_
 RewriteRule ^books/([0-9]+) index.php?action=books&book_id=$1
 RewriteRule ^books index.php?action=books
 
+RewriteRule ^authors/genre/([0-9]+) index.php?action=authors&sub-action=genre&genre_id=$1
 RewriteRule ^authors/([0-9]+) index.php?action=authors&author_id=$1
 RewriteRule ^authors index.php?action=authors
 

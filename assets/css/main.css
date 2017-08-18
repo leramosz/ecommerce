@@ -15,6 +15,23 @@ Table of Contents
 /*===================================================================================*/
 /*  GENERAL
 /*===================================================================================*/
+
+.page-body .row {  
+  margin-bottom: 25px;
+}
+
+.category-books .author-dp {
+  margin-bottom: 10px;
+}
+
+.media-object {
+    display: block;
+    max-width: 72px;
+    max-height: 99px;
+    width: auto;
+    height: auto;
+}
+
 .green-text {
   color: #629c49 !important;
 }
@@ -753,10 +770,41 @@ a:active {
   font-size: 20px;
   color: #fff;
 }
-.book .book-cover .cart .action a:hover,
-.book .book-cover .cart .action a:focus {
+.book .book-cover .cart .action #add-to-cart {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .cart .action #add-to-cart:hover,
+.book .book-cover .cart .action #add-to-cart:focus {
   text-decoration: none;
   color: #a2b718;
+}
+.book .book-cover .cart .action #remove-from-cart {
+  text-decoration: none;
+  color: #a2b718;
+}
+.book .book-cover .cart .action #remove-from-cart:hover,
+.book .book-cover .cart .action #remove-from-cart:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .cart .action #add-to-favourite {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .cart .action #add-to-favourite:hover,
+.book .book-cover .cart .action #add-to-favourite:focus {
+  text-decoration: none;
+  color: #FF0000;
+}
+.book .book-cover .cart .action #remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.book .book-cover .cart .action #remove-from-favourite:hover,
+.book .book-cover .cart .action #remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
 }
 .book .book-cover .cart .action a:first-child {
   margin-right: 10px;
@@ -1794,9 +1842,36 @@ a:active {
   color: #FFF;
   font-size: 29px;
 }
-.featured-book .actions a:hover,
-.featured-book .actions a:focus {
+.featured-book .actions #add-to-cart {
+  color: #FFFFFF;
+}
+.featured-book .actions #add-to-cart:hover,
+.featured-book .actions #add-to-cart:focus {
   color: #a2b718;
+}
+.featured-book .actions #remove-from-cart {
+  color: #a2b718;
+}
+.featured-book .actions #remove-from-cart:hover,
+.featured-book .actions #remove-from-cart:focus {
+  color: #FFFFFF;
+}
+.featured-book .actions .action #add-to-favourite {
+  color: #FFFFFF;
+}
+.featured-book .actions #add-to-favourite:hover,
+.featured-book .actions #add-to-favourite:focus {
+  text-decoration: none;
+  color: #FF0000;
+}
+.featured-book .actions #remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.featured-book .actions #remove-from-favourite:hover,
+.featured-book .actions #remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
 }
 .featured-book .actions a:last-child {
   margin-left: 20px;
@@ -2046,9 +2121,19 @@ a:active {
   margin-left: -1px;
   font-size: 22px;
 }
-.product-actions .btn-add-to-wishlist:hover,
-.product-actions .btn-add-to-wishlist:focus {
-  color: #a2b718;
+.product-actions #add-to-favourite-detail {
+  color: #FFFFFF;
+}
+.product-actions #add-to-favourite-detail:hover,
+.product-actions #add-to-favourite-detail:focus {
+  color: #FF0000;
+}
+.product-actions #remove-from-favourite-detail {
+  color: #FF0000;
+}
+.product-actions #remove-from-favourite-detail:hover,
+.product-actions #remove-from-favourite-detail:focus {
+  color: #FFFFFF;
 }
 .product-description h3 {
   font-family: 'RobotoBlack';

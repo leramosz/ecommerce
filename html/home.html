@@ -14,9 +14,7 @@
                                         <div class="col-sm-5 col-sm-push-7">
                                             <div class="book-in-shelf">
                                                 <div class="book-shelf"> 
-                                                    <div class="add-to-cart-action hidden-xs hidden-sm">
-                                                        <a href="<?=BASE_URL?>/checkout" class="add-to-cart-button"><img src="<?=BASE_URL?>/assets/images/shopping-cart.png" alt=""/></a>
-                                                    </div> <!-- /.add-to-cart-action-->
+                                                    
                                                     <div class="book-cover slider-book-cover">
                                                         <img class="img-responsive" alt="" src="<?=BASE_URL."/".$slider_book['image']?>" width="258" height="351"> 
                                                         <div class="fade"></div>
@@ -34,7 +32,7 @@
                                                     <p class="slider-caption-subtitle fadeInDown-2 hidden-xs"><?=$slider_book['overview']?></p>
                                                 </div><!-- /.slider-caption-heading -->
                                                 <div class="clearfix slider-price fadeInDown-3 hidden-xs">
-                                                    <a class="btn btn-secondary btn-price" href="<?=BASE_URL?>/assets/">$<?=$slider_book['price']?></a>
+                                                    <a class="btn btn-secondary btn-price" href="<?=BASE_URL?>/books/<?=$slider_book['id']?>">View Book</a>
                                                 </div> <!-- /.slider-price -->
                                             </div><!-- /.slider-caption -->
                                         </div><!-- /.col -->
@@ -44,38 +42,6 @@
                         </div><!-- /.item -->
                      <? endforeach; ?>
                 </div><!-- /#owl-main -->
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="slider-action">        
-                                <div class="row sub-header" id="search">
-                                    <div class='col-md-12'>
-                                        <div class="row">
-                                            <div class="col-sm-8 no-padding-right">
-                                                <div class="input-group">
-                                                    <span class="input-group-btn"><button class="btn btn-search" type="button"><i class="fa fa-search icon"></i></button></span>
-                                                    <input type="text" class="form-control search-book" placeholder="Search books...">
-                                                </div><!-- /.input-group -->
-                                            </div><!-- /.col -->
-
-                                            <div class="select-wrapper col-sm-4" style="padding:0px;">
-                                                <select id="id_select" class="selectpicker">
-                                                    <option selected>All Category</option>
-                                                    <option>Books</option>
-                                                    <option>Textbooks</option>
-                                                    <option>Audiobooks</option>
-                                                    <option>Magazines</option>
-                                                    <option>Kids</option>
-                                                </select>
-                                            </div><!-- /.col -->
-                                        </div><!-- /.row -->
-                                    </div><!-- /.col -->
-                                </div><!-- /.row -->
-                            </div><!-- /.slider-action -->  
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container -->
             </div> <!-- /.hero -->
         </div><!-- /.slider -->
 
@@ -130,10 +96,14 @@
 
                                 <div class="cart animate-effect">
                                     <div class="action">
-                                        <a class="add-to-cart" href="<?=BASE_URL?>/book" title="Add to Cart">
-                                            <i class="icon icon-plus fa fa-plus-circle"></i>
+                                        <a class="add-to-cart" id="<?=(array_key_exists($new_book['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$new_book['id']?>" data-price="<?=($new_book['sale_off']) ? $new_book['sale_off']:$new_book['price']?>" href="#" title="<?=(array_key_exists($new_book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>">
+                                            <? if(array_key_exists($new_book['id'], $session_cart_books)): ?>
+                                                <i class="icon icon-minus fa fa-minus-circle"></i>
+                                            <? else: ?>
+                                                <i class="icon icon-plus fa fa-plus-circle"></i>
+                                            <? endif; ?>
                                         </a>
-                                        <a class="add-to-cart" href="#" title="Favourite">
+                                        <a class="add-to-cart" id="<?=(in_array($new_book['id'], $session_fav_books)) ? 'remove-from-favourite':'add-to-favourite'?>" data-book="<?=$new_book['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($new_book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
                                             <i class="icon icon-heart fa fa-heart"></i>
                                         </a>
                                     </div><!-- /.action -->
@@ -223,10 +193,14 @@
 
                                 <div class="cart animate-effect">
                                     <div class="action">
-                                        <a class="add-to-cart" href="<?=BASE_URL?>/book" title="Add to Cart">
-                                            <i class="icon icon-plus fa fa-plus-circle"></i>
+                                        <a class="add-to-cart" id="<?=(array_key_exists($best_seller['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$best_seller['id']?>" data-price="<?=($best_seller['sale_off']) ? $best_seller['sale_off']:$best_seller['price']?>" href="#" title="<?=(array_key_exists($best_seller['id'], $session_cart_books)) ? 'Remove from Cart': 'Add to Cart'?>">
+                                            <? if(array_key_exists($best_seller['id'], $session_cart_books)): ?>
+                                                <i class="icon icon-minus fa fa-minus-circle"></i>
+                                            <? else: ?>
+                                                <i class="icon icon-plus fa fa-plus-circle"></i>
+                                            <? endif; ?>
                                         </a>
-                                        <a class="add-to-cart" href="#" title="Favourite">
+                                        <a class="add-to-cart" id="<?=(in_array($best_seller['id'], $session_fav_books)) ? 'remove-from-favourite':'add-to-favourite'?>" data-book="<?=$best_seller['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($best_seller['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
                                             <i class="icon icon-heart fa fa-heart"></i>
                                         </a>
                                     </div><!-- /.action -->
@@ -286,17 +260,17 @@
                                 
                                 <? foreach($featured_authors as $author): ?>
                                     <div class="item item-author-block author">
-                                        <a href="<?=BASE_URL?>/authors/<?=$author['id']?>">
-                                            <div class="author-dp">
-                                                <img src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL.$author['image']?>"  alt="">
-                                            </div>
-                                        </a>
+                                        <div class="author-dp">
+                                            <img src="<?=BASE_URL?>/assets/images/blank.gif" data-echo="<?=BASE_URL.$author['image']?>"  alt="">
+                                        </div>
                                         <div class="author-details">
-                                            <h3 class="author-name"><a href="<?=BASE_URL?>/authors/<?=$author['id']?>"><?=$author['name']?></a></h3>
+                                            <h3 class="author-name">
+                                                <?=$author['name']?>
+                                            </h3>
                                             <blockquote class="author-testimonial">             
                                                 <?=trim(substr($author['biography'], 0, 100))?>...
                                             </blockquote>
-                                            <a href="<?=BASE_URL?>/authors/<?=$author['id']?>" class="btn btn-primary btn-view-books">View Books</a>
+                                            <a href="<?=BASE_URL?>/authors/<?=$author['id']?>" class="btn btn-primary btn-view-books">View Author</a>
                                         </div><!-- /.author-details -->
                                     </div><!-- /.item -->
                                  <? endforeach; ?>

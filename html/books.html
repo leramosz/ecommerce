@@ -9,33 +9,7 @@
                     <? else: ?>
                          <li class="active">Books</li>
                     <? endif;?>
-                </ul><!-- /.breadcrumb -->
-
-                <!-- ========================================= BREADCRUMB SEARCH BOX ========================================= -->
-                <ul class="list-unstyled search-box pull-right">
-                    <li data-target="#search" data-toggle="sub-header"><button type="button" class="btn btn-primary-dark search-button"><i class="fa fa-search icon"></i></button>
-                        <div class="row search-action sub-header" id="search">
-                            <div class="col-sm-8 col-xs-12 no-padding-right">
-                                <div class="input-group">
-                                    <span class="input-group-btn"><button class="btn btn-search" type="button"><i class="fa fa-search icon"></i></button></span>
-                                    <input type="text" class="form-control search-book" placeholder="Search books...">
-                                </div><!-- /.input-group -->
-                            </div><!-- /.col -->
-
-                            <div class="col-sm-4 col-xs-12 select-wrapper" style="padding:0px;">
-                                <select id="id_select" class="selectpicker">
-                                    <option selected>All Category</option>
-                                    <option>Books</option>
-                                    <option>Textbooks</option>
-                                    <option>Audiobooks</option>
-                                    <option>Magazines</option>
-                                    <option>Kids</option>
-                                </select>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </li>
-                </ul><!-- /.search-box -->
-                <!-- ========================================= BREADCRUMB SEARCH BOX : END ========================================= -->        
+                </ul><!-- /.breadcrumb -->      
 
             </div><!-- /.container -->
         </div><!-- /.breadcrumb-container -->
@@ -106,10 +80,14 @@
 
                                                             <div class="cart animate-effect">
                                                                 <div class="action">
-                                                                    <a class="add-to-cart" href="<?=BASE_URL?>/book" title="Add to Cart">
-                                                                        <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                                    <a class="add-to-cart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                                                        <? if(array_key_exists($book['id'], $session_cart_books)): ?>
+                                                                            <i class="icon icon-minus fa fa-minus-circle"></i>
+                                                                        <? else: ?>
+                                                                            <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                                        <? endif; ?>
                                                                     </a>
-                                                                    <a class="add-to-cart" href="#" title="Favourite">
+                                                                    <a class="add-to-cart" id="<?=(in_array($book['id'], $session_fav_books)) ? 'remove-from-favourite':'add-to-favourite'?>" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
                                                                         <i class="icon icon-heart fa fa-heart"></i>
                                                                     </a>
                                                                 </div><!-- /.action -->
@@ -197,8 +175,16 @@
 
                                                 </div><!-- /.featured-book-content -->
                                                 <div class="actions">
-                                                    <a class="add-to-cart" title="Add to Cart" href="<?=BASE_URL?>/checkout"><i class="icon-plus fa fa-plus-circle"></i></a>
-                                                    <a class="add-to-cart" title="Favourite" href="#"><i class="icon-heart fa fa-heart"></i></a>
+                                                     <a class="add-to-cart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                                        <? if(array_key_exists($book['id'], $session_cart_books)): ?>
+                                                            <i class="icon icon-minus fa fa-minus-circle"></i>
+                                                        <? else: ?>
+                                                            <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                        <? endif; ?>
+                                                    </a>
+                                                    <a class="add-to-cart" id="<?=(in_array($book['id'], $session_fav_books)) ? 'remove-from-favourite':'add-to-favourite'?>" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
+                                                        <i class="icon icon-heart fa fa-heart"></i>
+                                                    </a>
                                                 </div><!-- /.actions -->
                                             </div><!-- /.col -->
                                         </div><!-- /.row -->
@@ -225,9 +211,9 @@
                                                 <div class="module-body category-module-body">
                                                     <ul class="list-unstyled category-list">
                                                         <li <?=(!isset($selected_genre)) ? 'class="sub-category-list"':''?>><a href="<?=BASE_URL?>/books">All</a></li>
-                                                        <? foreach($book_genres as $book_genre): ?>
-                                                            <li <?=(isset($selected_genre) && $selected_genre['id'] == $book_genre['id']) ? 'class="sub-category-list"':''?>>
-                                                                <a href="<?=BASE_URL?>/books/genre/<?=$book_genre['id']?>"><?=$book_genre['name']?></a>
+                                                        <? foreach($genres_list as $genre): ?>
+                                                            <li <?=(isset($selected_genre) && $selected_genre['id'] == $genre['id']) ? 'class="sub-category-list"':''?>>
+                                                                <a href="<?=BASE_URL?>/books/genre/<?=$genre['id']?>"><?=$genre['name']?></a>
                                                             </li>
                                                         <? endforeach; ?>
                                                     </ul><!-- /.list-unstyled -->

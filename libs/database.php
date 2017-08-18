@@ -6,6 +6,7 @@ class Database {
 	private $sql;
 	private $selectTable;
 	private $joinTable;
+	private $tableAliases = array();
 	
 	function __construct() {
 		
@@ -15,12 +16,22 @@ class Database {
 	
 	}
 
-	public function selectTable($table) {
+	public function selectTable($table, $alias = false) {
 		$this->selectTable = $table;
+		$this->tableAliases[$table] = $table;
+		if ($alias) {
+			$this->selectTable .= " AS ".$alias;
+			$this->tableAliases[$this->selectTable] = $alias;
+		} 
 	}
 
-	public function joinTable($table) {
+	public function joinTable($table, $alias = false) {
 		$this->joinTable = $table;
+		$this->tableAliases[$table] = $table;
+		if ($alias) {
+			$this->joinTable .= " AS ".$alias;
+			$this->tableAliases[$this->joinTable] = $alias;
+		} 
 	}	
 
 	public function select($columns) {
@@ -33,24 +44,61 @@ class Database {
 	public function join($condition) {
 
 		list($key, $value) = each($condition);
-		$this->sql .= " INNER JOIN ".$this->joinTable." ON ".$this->selectTable.".".$key." = ".$this->joinTable.".".$value;
+		$this->sql .= " INNER JOIN ".$this->joinTable." ON ".$this->tableAliases[$this->selectTable].".".$key." = ".$this->tableAliases[$this->joinTable].".".$value;
 		return $this;
 	}
 
-	public function where($condition, $table = false) {
+	public function where($condition, $table = false, $operator = "=") {
 
 		$table = ($table) ? $table : $this->selectTable;
 		list($key, $value) = each($condition);
-		$this->sql .= " WHERE ".$table.".".$key." = ".$value;
+		
+		if(is_array($value)) {
+			$operator = "IN";
+			$value = "(".implode(',', $value).")";
+		}
+
+		$this->sql .= " WHERE ".$table.".".$key." ".$operator." ".$value;
 		return $this;
 
+	}
+
+	public function insert($table, $fields){
+
+		$columns = implode(",",array_keys($fields));
+		$escaped_values = array_map(array($this->link, 'real_escape_string'), array_values($fields));
+		array_walk($escaped_values, function(&$item) { $item = "'".$item."'"; });
+		$values  = implode(",", $escaped_values);
+		
+		$this->sql = "INSERT INTO ".$table." (".$columns.") VALUES (".$values.")";
+		return $this->link->query($this->sql);
+
+	}
+
+	public function delete($table, $fields) {
+
+		$this->sql = "DELETE FROM ".$table." WHERE ";
+
+		$condition = '';
+		foreach($fields as $key => $value) {
+			$condition .= $key." = ".$value;
+			if (next($fields) !== false) {
+				$condition .= " AND ";	
+			}
+		}
+
+		$this->sql .= $condition;
+
+		return $this->link->query($this->sql);
+		
 	}
 
 	public function query() {
 
 		$output = array();
-		
+
 		$result = $this->link->query($this->sql);
+
 		while($row = $result->fetch_assoc()) {
 			$output[] = $row;
  		}
