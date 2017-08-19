@@ -22,4 +22,10 @@ RewriteRule ^contact index.php?controller=contact&action=index
 
 RewriteRule ^wishlist index.php?controller=wishlist&action=index
 
+RewriteRule ^register index.php?controller=login&action=register
+
+RewriteRule ^login index.php?controller=login&action=index
+
+RewriteRule ^logout index.php?controller=login&action=logout
+
 ErrorDocument 404 /bookstore/index.php?action=error

@@ -52,13 +52,30 @@ class Database {
 
 		$table = ($table) ? $table : $this->selectTable;
 		list($key, $value) = each($condition);
-		
+
+		if(is_array($value)) {
+			$operator = "IN";
+			$value = "(".implode(',', $value).")";
+		} else {
+			$value = "'".$value."'";
+		}
+
+		$this->sql .= " WHERE ".$table.".".$key." ".$operator." ".$value;
+		return $this;
+
+	}
+
+	public function and($condition, $table = false, $operator = "=") {
+
+		$table = ($table) ? $table : $this->selectTable;
+		list($key, $value) = each($condition);
+	
 		if(is_array($value)) {
 			$operator = "IN";
 			$value = "(".implode(',', $value).")";
 		}
 
-		$this->sql .= " WHERE ".$table.".".$key." ".$operator." ".$value;
+		$this->sql .= " AND ".$table.".".$key." ".$operator." '".$value."'";
 		return $this;
 
 	}

@@ -15,7 +15,18 @@ Table of Contents
 /*===================================================================================*/
 /*  GENERAL
 /*===================================================================================*/
-
+.center-block.login-page-content {
+  width: 650px;
+}
+.login-page-content {
+  text-align: center;
+}
+.login.page {
+  margin: 15px 0px;
+}
+.center-block.login-page-content {
+    width: 60%;
+}
 .page-body .row {  
   margin-bottom: 25px;
 }

@@ -9,9 +9,16 @@ class Wishlist extends Controller {
 	}
 
 	public function index($params = false) {
-		$books = $this->Wishlist->getWishlist();
+
+		if(!$this->session->exists('session-user')) {
+			return $this->not_authorized();
+		}
+
+		$user = $this->session->get('session-user');
+		$books = $this->Wishlist->getWishlist($user['id']);
 		$this->view->assign('books', $books);
 		$this->view->assign('session_cart_books', $this->session->get('session-cart-books'));
+		$this->view->assign('user', $user['id']);
 		return $this->view->render("wishlist.html");
 	}
 

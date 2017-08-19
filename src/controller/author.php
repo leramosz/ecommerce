@@ -28,6 +28,9 @@ class Author extends Controller {
 			$this->view->assign('author', $author);
 			$this->view->assign('session_cart_books', $this->session->get('session-cart-books'));
 			$this->view->assign('session_fav_books', $this->session->get('session-fav-books'));
+			if($this->session->exists('session-user')) {
+				$this->view->assign('user', $this->session->get('session-user')['id']);
+			}
 			return $this->view->render("author.html");
 		} else {
 			$this->view->assign('page', 'authors');

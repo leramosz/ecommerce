@@ -11,11 +11,18 @@
             </ul><!-- /.navbar-nav -->
 
             <ul class="navbar-nav nav navbar-right">
-                <li><a href="#">Login</a></li>
-                <li><a href="<?=BASE_URL?>/checkout">Checkout</a></li>
-                <li class="active">
-                    <a id="cart-amount" data-cart-amount="<?=$cart_amount?>" href="<?=BASE_URL?>/cart">Total : $<?=sprintf('%0.2f', $cart_amount)?></a>
-                </li>
+                <? if(!isset($session_user)): ?>
+                    <li><a href="<?=BASE_URL?>/register">Register</a></li>
+                    <li><a href="<?=BASE_URL?>/login">Login</a></li>
+                <? else: ?>
+                    <li><a id="logout" href="#">Logout</a></li>
+                <? endif; ?>
+                <? if(isset($session_user)): ?>
+                    <li><a href="<?=BASE_URL?>/checkout">Checkout</a></li>
+                    <li class="active">
+                        <a id="cart-amount" data-cart-amount="<?=$cart_amount?>" href="<?=BASE_URL?>/cart">Total : $<?=sprintf('%0.2f', $cart_amount)?></a>
+                    </li>
+                <? endif; ?>
             </ul><!-- /.navbar-nav -->
         </div><!-- /.container-->
     </nav><!-- /.navbar-->
@@ -176,14 +183,18 @@
                         <a href="<?=BASE_URL?>/authors">Authors</a>
                     </li>  
                     <li class="hidden-sm">
-                        <a href="<?=BASE_URL?>/wishlist">wishlist</a>
+                        <? if(isset($session_user)): ?>
+                            <a href="<?=BASE_URL?>/wishlist">wishlist</a>
+                        <? endif; ?>
                     </li>    
                 </ul><!-- /.nav -->
             </div><!-- /.collapse -->
-            <a href="<?=BASE_URL?>/cart" class="navbar-btn btn btn-cart">
-                <img src="<?=BASE_URL?>/assets/images/shopping-cart.png" alt="" />
-                    <span class="badge-cart-items-count" id="cart-count" data-cart-count="<?=$cart_count?>"><?=$cart_count?></span>
-            </a>
+            <? if(isset($session_user)): ?>
+                <a href="<?=BASE_URL?>/cart" class="navbar-btn btn btn-cart">
+                    <img src="<?=BASE_URL?>/assets/images/shopping-cart.png" alt="" />
+                        <span class="badge-cart-items-count" id="cart-count" data-cart-count="<?=$cart_count?>"><?=$cart_count?></span>
+                </a>
+            <? endif; ?>
         </div><!-- /.header-mast -->
         <!-- ============================================================= NAVBAR PRIMARY : END ============================================================= -->           
     </div><!-- /.container -->

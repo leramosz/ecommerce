@@ -16,6 +16,9 @@ class Home extends Controller {
 		$best_sellers = $this->Home->getBestSellers();
 		$featured_authors = $this->Home->getFeaturedAuthors();
 
+		if($this->session->exists('session-user')) {
+			$this->view->assign('user', $this->session->get('session-user')['id']);
+		}
 		$this->view->assign('slider_books', $slider_books);
 		$this->view->assign('new_books', $new_books);
 		$this->view->assign('best_sellers', $best_sellers);

@@ -715,6 +715,105 @@
             removeFromCartPage(book_id, subtotal, count);
         });
 
+        /*===================================================================================*/
+        /*  Login / Logout / Register
+        /*===================================================================================*/
+        $(document).on('click', '#login-submit', function(e) {
+            e.preventDefault();
+            var username = $('#username').val();
+            var password = $('#password').val();
+
+            $.ajax({
+
+                url: BASE_URL,
+                type: 'POST',
+                data: { username: username, password: password, controller: 'login', action: 'login' },
+                dataType: 'json',
+                complete: function (result) {
+                    if(result.responseText == 'OK') {
+                        window.location.href = BASE_URL;     
+                    } else {
+                        $("#login-error").show();
+                    }
+                },
+            
+            });
+
+        });
+
+        $(document).on('click', '#logout', function(e) {
+
+            $.ajax({
+
+                url: BASE_URL,
+                type: 'POST',
+                data: { controller: 'login', action: 'logout' },
+                dataType: 'json',
+                complete: function (result) {
+                    window.location.href = BASE_URL;     
+                },
+            
+            });
+
+        });
+
+        $(document).on('click', '#register-submit', function(e) {
+            e.preventDefault();
+            var name = $('#full_name').val();
+            var mail = $('#mail').val();
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var repassword = $('#repassword').val();
+
+            if(name.length == 0) {
+                $("#register-error").html('Enter a valid name');
+                $("#register-error").show();
+                return;
+            }
+
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if(mail.length == 0 || !re.test(mail)) {
+                $("#register-error").html('Enter a valid mail');
+                $("#register-error").show();
+                return;
+            }
+
+            if(username.length == 0) {
+                $("#register-error").html('Enter a valid username');
+                $("#register-error").show();
+                return;
+            }
+
+             if(password.length == 0) {
+                $("#register-error").html('Enter a valid password');
+                $("#register-error").show();
+                return;
+            }
+
+            if(password != repassword) {
+                $("#register-error").html('Passwords entered do not match');
+                $("#register-error").show();
+                return;
+            }
+
+            $.ajax({
+
+                url: BASE_URL,
+                type: 'POST',
+                data: { name: name, mail: mail, username: username, password: password, controller: 'login', action: 'do_register' },
+                dataType: 'json',
+                complete: function (result) {
+                    if(result.responseText == 'OK') {
+                        window.location.href = BASE_URL + "login";     
+                    } else {
+                        $("#register-error").html(result.responseText);
+                        $("#register-error").show();
+                    }
+                },
+            
+            });
+
+        });
 
 })(jQuery);
 

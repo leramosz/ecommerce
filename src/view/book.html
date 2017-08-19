@@ -65,23 +65,24 @@
                                         </div><!-- /.detail-book-price -->
                                     </div><!-- /.pull-left -->
 
-                                    <div class="pull-right col-md-6 col-sm-7 col-xs-12">
-                                        <div class="row product-actions">
-
-                                            <a href="#" class="col-sm-6 btn btn-primary btn-addToCart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart-detail':'add-to-cart-detail'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>">
-                                                <? if(array_key_exists($book['id'], $session_cart_books)): ?>
-                                                    <i class="icon icon-minus fa fa-minus-circle"></i> 
-                                                    <span>Remove</span>
-                                                <? else: ?>
-                                                    <i class="icon icon-plus fa fa-plus-circle"></i>
-                                                    <span>Add</span>
-                                                <? endif; ?>
-                                            </a>  
-                                            <button title="<?=(in_array($book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>" id="<?=(in_array($book['id'], $session_fav_books)) ? 'remove-from-favourite-detail':'add-to-favourite-detail'?>" data-book="<?=$book['id']?>" data-user="<?=USER?>" class="hidden-xs btn btn-secondary btn-add-to-wishlist col-xs-2 " type="button">
-                                                <span class="icon glyphicon glyphicon-heart"></span>
-                                            </button>
-                                        </div><!-- /.row -->
-                                    </div><!-- /.pull-right -->
+                                    <? if(isset($user)): ?>
+                                        <div class="pull-right col-md-6 col-sm-7 col-xs-12">
+                                            <div class="row product-actions">
+                                                <a href="#" class="col-sm-6 btn btn-primary btn-addToCart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart-detail':'add-to-cart-detail'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>">
+                                                    <? if(array_key_exists($book['id'], $session_cart_books)): ?>
+                                                        <i class="icon icon-minus fa fa-minus-circle"></i> 
+                                                        <span>Remove</span>
+                                                    <? else: ?>
+                                                        <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                        <span>Add</span>
+                                                    <? endif; ?>
+                                                </a>  
+                                                <button title="<?=(in_array($book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>" id="<?=(in_array($book['id'], $session_fav_books)) ? 'remove-from-favourite-detail':'add-to-favourite-detail'?>" data-book="<?=$book['id']?>" data-user="<?=$user?>" class="hidden-xs btn btn-secondary btn-add-to-wishlist col-xs-2 " type="button">
+                                                    <span class="icon glyphicon glyphicon-heart"></span>
+                                                </button>
+                                            </div><!-- /.row -->
+                                        </div><!-- /.pull-right -->
+                                    <? endif; ?>
                                 </div><!-- /.detail-cart-button -->
 
                                 <div class="clearfix"></div>
@@ -220,6 +221,11 @@
                                                 <h3 class="book-title">
                                                     <a href="<?=BASE_URL.'/books/'.$related_book['id']?>"><?=$related_book['name']?></a>
                                                 </h3>
+                                                <p class="book-author">
+                                                    <a href="<?=BASE_URL.'/authors/'.$related_book['author']['id']?>">
+                                                        <?=$related_book['author']['name']?>
+                                                    </a>
+                                                </p>
                                                 <div class="star-rating">
                                                     <?for($i=1; $i<=5; $i++):?>
                                                         <i class="fa fa-star <?=($i <= $related_book['rating']) ? 'color':''?>"></i>
@@ -231,18 +237,20 @@
                                                 <p class="hidden-sm hidden-md"><?=$related_book['overview']?></p>
 
                                             </div><!-- /.featured-book-content -->
-                                            <div class="actions">
-                                                <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'list-remove-from-cart':'list-add-to-cart'?>" data-book="<?=$related_book['id']?>" data-price="<?=($related_book['sale_off']) ? $related_book['sale_off']:$related_book['price']?>" title="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
-                                                    <? if(array_key_exists($related_book['id'], $session_cart_books)): ?>
-                                                        <i class="icon icon-minus fa fa-minus-circle"></i>
-                                                    <? else: ?>
-                                                        <i class="icon icon-plus fa fa-plus-circle"></i>
-                                                    <? endif; ?>
-                                                </a>
-                                                <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(in_array($related_book['id'], $session_fav_books)) ? 'list-remove-from-favourite':'list-add-to-favourite'?>" data-book="<?=$related_book['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($related_book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
-                                                    <i class="icon icon-heart fa fa-heart"></i>
-                                                </a>
-                                            </div><!-- /.actions -->
+                                            <? if(isset($user)): ?>
+                                                <div class="actions">
+                                                    <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'list-remove-from-cart':'list-add-to-cart'?>" data-book="<?=$related_book['id']?>" data-price="<?=($related_book['sale_off']) ? $related_book['sale_off']:$related_book['price']?>" title="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                                        <? if(array_key_exists($related_book['id'], $session_cart_books)): ?>
+                                                            <i class="icon icon-minus fa fa-minus-circle"></i>
+                                                        <? else: ?>
+                                                            <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                        <? endif; ?>
+                                                    </a>
+                                                    <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(in_array($related_book['id'], $session_fav_books)) ? 'list-remove-from-favourite':'list-add-to-favourite'?>" data-book="<?=$related_book['id']?>" data-user="<?=$user?>" href="#" title="<?=(in_array($related_book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
+                                                        <i class="icon icon-heart fa fa-heart"></i>
+                                                    </a>
+                                                </div><!-- /.actions -->
+                                            <? endif; ?>
                                         </div><!-- /.col -->
                                     </div><!-- /.row -->
                                 </div><!-- /.books -->
@@ -283,20 +291,22 @@
                                                             <? endif; ?>                     
                                                         </span>
                                                     </div><!-- /.book-price -->
-                                                    <div class="cart animate-effect">
-                                                        <div class="action">
-                                                            <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'grid-remove-from-cart':'grid-add-to-cart'?>" data-book="<?=$related_book['id']?>" data-price="<?=($related_book['sale_off']) ? $related_book['sale_off']:$related_book['price']?>" title="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
-                                                                <? if(array_key_exists($related_book['id'], $session_cart_books)): ?>
-                                                                    <i class="icon icon-minus fa fa-minus-circle"></i>
-                                                                <? else: ?>
-                                                                    <i class="icon icon-plus fa fa-plus-circle"></i>
-                                                                <? endif; ?>
-                                                            </a>
-                                                            <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(in_array($related_book['id'], $session_fav_books)) ? 'grid-remove-from-favourite':'grid-add-to-favourite'?>" data-book="<?=$related_book['id']?>" data-user="<?=USER?>" href="#" title="<?=(in_array($related_book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
-                                                                <i class="icon icon-heart fa fa-heart"></i>
-                                                            </a>
-                                                        </div><!-- /.action -->
-                                                    </div><!-- /.cart -->
+                                                    <? if(isset($user)): ?>
+                                                        <div class="cart animate-effect">
+                                                            <div class="action">
+                                                                <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'grid-remove-from-cart':'grid-add-to-cart'?>" data-book="<?=$related_book['id']?>" data-price="<?=($related_book['sale_off']) ? $related_book['sale_off']:$related_book['price']?>" title="<?=(array_key_exists($related_book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                                                    <? if(array_key_exists($related_book['id'], $session_cart_books)): ?>
+                                                                        <i class="icon icon-minus fa fa-minus-circle"></i>
+                                                                    <? else: ?>
+                                                                        <i class="icon icon-plus fa fa-plus-circle"></i>
+                                                                    <? endif; ?>
+                                                                </a>
+                                                                <a class="add-to-cart book-<?=$related_book['id']?>" id="<?=(in_array($related_book['id'], $session_fav_books)) ? 'grid-remove-from-favourite':'grid-add-to-favourite'?>" data-book="<?=$related_book['id']?>" data-user="<?=$user?>" href="#" title="<?=(in_array($related_book['id'], $session_fav_books)) ? 'Remove from Favourite':'Add to Favourite'?>">
+                                                                    <i class="icon icon-heart fa fa-heart"></i>
+                                                                </a>
+                                                            </div><!-- /.action -->
+                                                        </div><!-- /.cart -->
+                                                    <? endif; ?>
                                                 </div><!-- /.book-inner -->
                                             </div><!-- /.book-cover -->
 

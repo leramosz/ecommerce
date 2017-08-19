@@ -19,6 +19,9 @@ class Book extends Controller {
 		$this->view->assign('books', $books);
 		$this->view->assign('session_cart_books', $this->session->get('session-cart-books'));
 		$this->view->assign('session_fav_books', $this->session->get('session-fav-books'));
+		if($this->session->exists('session-user')) {
+			$this->view->assign('user', $this->session->get('session-user')['id']);
+		}
 		return $this->view->render("books.html");
 
 	}
@@ -30,6 +33,9 @@ class Book extends Controller {
 			$this->view->assign('book', $book);
 			$this->view->assign('session_cart_books', $this->session->get('session-cart-books'));
 			$this->view->assign('session_fav_books', $this->session->get('session-fav-books'));
+			if($this->session->exists('session-user')) {
+				$this->view->assign('user', $this->session->get('session-user')['id']);
+			}
 			return $this->view->render("book.html");
 		} else {
 			$this->view->assign('page', 'books');
@@ -53,6 +59,9 @@ class Book extends Controller {
 		$this->view->assign('books', $books);
 		$this->view->assign('session_cart_books', $this->session->get('session-cart-books'));
 		$this->view->assign('session_fav_books', $this->session->get('session-fav-books'));
+		if($this->session->exists('session-user')) {
+			$this->view->assign('user', $this->session->get('session-user')['id']);
+		}
 		return $this->view->render("books.html");
 
 	}

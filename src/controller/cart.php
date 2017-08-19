@@ -10,6 +10,10 @@ class Cart extends Controller {
 
 	public function index($params = false) {
 
+		if(!$this->session->exists('session-user')) {
+			return $this->not_authorized();
+		}
+
 		$cart_books = $this->session->get('session-cart-books');
 		if(count($cart_books) > 0) {
 			$cart_books = $this->Cart->getCartBooks($cart_books);
