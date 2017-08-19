@@ -2,7 +2,6 @@
 
 class View {
 
-	private $template_dir = "./html";
 	public $vars = array();
 	
 	function __construct() {
@@ -11,7 +10,7 @@ class View {
 
 	public function render($template_file) {
 
-		if (file_exists($this->template_dir.'/'.$template_file)) {
+		if (file_exists(TEMPLATE_DIR.'/'.$template_file)) {
 
             // using var names directly in the template
             foreach ($this->vars as $name => $value) {
@@ -20,7 +19,7 @@ class View {
 
             // starts buffering template file
             ob_start();
-            include $this->template_dir.'/'.$template_file;
+            include TEMPLATE_DIR.'/'.$template_file;
             $output = ob_get_clean();
 
             // cleaning vars
@@ -29,7 +28,7 @@ class View {
             return $output;
 
         } else {
-            throw new Exception('No template file '.$template_file.' present in directory '.$this->template_dir);
+            throw new Exception('No template file '.$template_file.' present in directory '.TEMPLATE_DIR);
         }
 
 	}

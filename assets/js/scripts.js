@@ -253,54 +253,11 @@
             return false;
         });
 
-
-        /*===================================================================================*/
-        /*  Quantity Incre and Decre
-        /*===================================================================================*/ 
-        // quantity incre and decre
-        $('.quant-input .plus').click(function() {
-            var cart_amount = parseFloat($('#cart-amount').attr('data-cart-amount'));
-            var cart_count = parseInt($('#cart-count').attr('data-cart-count'));
-            var val = $(this).parent().next().val();
-            var book_id = $(this).parent().parent().attr('data-book');
-            var unit_price = $(this).parent().parent().parent().prev().find('.price').html();
-            unit_price = parseFloat(unit_price.replace('$',''));
-            var currenTotal = $('#total-amount').html();
-            currenTotal = parseFloat(currenTotal.replace('$',''));
-            val = parseInt(val) + 1;
-            var subtotal =  unit_price * val;
-            var total = currenTotal + unit_price;
-            $(this).parent().next().val(val);
-            $(this).parent().parent().parent().next().find('.price').html('$'+parseFloat(subtotal).toFixed(2));
-            addToCart(book_id, unit_price);
-        });
-
-        $('.quant-input .minus').click(function() {
-            var cart_amount = parseFloat($('#cart-amount').attr('data-cart-amount'));
-            var cart_count = parseInt($('#cart-count').attr('data-cart-count'));
-            var val = $(this).parent().next().val();
-            var book_id = $(this).parent().parent().attr('data-book');
-            var unit_price = $(this).parent().parent().parent().prev().find('.price').html();
-            unit_price = parseFloat(unit_price.replace('$',''));
-            var currenTotal = $('#total-amount').html();
-            currenTotal = parseFloat(currenTotal.replace('$',''));
-            if (val > 1) {
-                val = parseInt(val) - 1;
-                var subtotal = unit_price * val;
-                var total = currenTotal - unit_price;
-                $(this).parent().next().val(val);
-                $(this).parent().parent().parent().next().find('.price').html('$'+parseFloat(subtotal).toFixed(2));
-                removeFromCart(book_id, unit_price, 1);
-            }
-        });
-
         /*===================================================================================*/
         /*  CUSTOM CONTROLS
         /*===================================================================================*/
 
         $('.selectpicker').selectpicker();
-
-
 
         var dragging = true;
         var cart = ".cart";
@@ -341,7 +298,8 @@
                                     user_id: user_id, 
                                     book_id: book_id
                                 },
-                        action: 'add-favourite' 
+                        controller: 'wishlist',
+                        action: 'add'
                     };
         
             $.ajax({
@@ -364,7 +322,8 @@
                                     user_id: user_id, 
                                     book_id: book_id
                                 },
-                        action: 'remove-favourite' 
+                        controller: 'wishlist',
+                        action: 'delete' 
                     };
         
             $.ajax({
@@ -505,6 +464,43 @@
         /*===================================================================================*/
         /*  ADD TO / REMOVE FROM CART 
         /*===================================================================================*/
+        // quantity incre and decre
+        $('.quant-input .plus').click(function() {
+            var cart_amount = parseFloat($('#cart-amount').attr('data-cart-amount'));
+            var cart_count = parseInt($('#cart-count').attr('data-cart-count'));
+            var val = $(this).parent().next().val();
+            var book_id = $(this).parent().parent().attr('data-book');
+            var unit_price = $(this).parent().parent().parent().prev().find('.price').html();
+            unit_price = parseFloat(unit_price.replace('$',''));
+            var currenTotal = $('#total-amount').html();
+            currenTotal = parseFloat(currenTotal.replace('$',''));
+            val = parseInt(val) + 1;
+            var subtotal =  unit_price * val;
+            var total = currenTotal + unit_price;
+            $(this).parent().next().val(val);
+            $(this).parent().parent().parent().next().find('.price').html('$'+parseFloat(subtotal).toFixed(2));
+            addToCart(book_id, unit_price);
+        });
+
+        $('.quant-input .minus').click(function() {
+            var cart_amount = parseFloat($('#cart-amount').attr('data-cart-amount'));
+            var cart_count = parseInt($('#cart-count').attr('data-cart-count'));
+            var val = $(this).parent().next().val();
+            var book_id = $(this).parent().parent().attr('data-book');
+            var unit_price = $(this).parent().parent().parent().prev().find('.price').html();
+            unit_price = parseFloat(unit_price.replace('$',''));
+            var currenTotal = $('#total-amount').html();
+            currenTotal = parseFloat(currenTotal.replace('$',''));
+            if (val > 1) {
+                val = parseInt(val) - 1;
+                var subtotal = unit_price * val;
+                var total = currenTotal - unit_price;
+                $(this).parent().next().val(val);
+                $(this).parent().parent().parent().next().find('.price').html('$'+parseFloat(subtotal).toFixed(2));
+                removeFromCartPage(book_id, unit_price, 1);
+            }
+        });
+
         function updateCartValues(cart_amount, cart_count) {
             $('#cart-amount').attr('data-cart-amount', parseFloat(cart_amount).toFixed(2));
             $('#cart-count').attr('data-cart-count', cart_count);
@@ -527,7 +523,8 @@
                         count: count,
                         cart_amount: parseFloat(cart_amount).toFixed(2),
                         cart_count: cart_count, 
-                        action: 'remove-cart-page' 
+                        controller: 'cart',
+                        action: 'delete_cart_page' 
                     };
         
             $.ajax({
@@ -555,7 +552,7 @@
 
                 url: BASE_URL,
                 type: 'POST',
-                data: {book_id: book_id, action: 'remove-cart'},
+                data: {book_id: book_id, controller: 'cart', action: 'delete'},
                 dataType: 'json',
                 complete: function (result) {
                     var res = JSON.parse(result.responseText);
@@ -578,8 +575,9 @@
                         book_id: book_id,
                         price: price,
                         cart_amount: parseFloat(cart_amount).toFixed(2),
-                        cart_count: cart_count, 
-                        action: 'add-cart' 
+                        cart_count: cart_count,
+                        controller: 'cart', 
+                        action: 'add' 
                     };
         
             $.ajax({
