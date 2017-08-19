@@ -380,34 +380,126 @@
             });
         }
 
-        $('#add-to-favourite-detail').click(function(e){
+        // Add from book detail page (good)
+        $(document).on('click', '#add-to-favourite-detail', function(e){
             e.preventDefault();
-            addToFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+            user_id = $(this).attr("data-user");
+            
+            $(this).attr('title', 'Remove from Favourite');
+            $(this).attr('id', 'remove-from-favourite-detail');
+            $(this).blur();
+            addToFavourites(user_id, book_id);
         });
 
-        $('.actions #add-to-favourite').click(function(e){
+        // Add from different book lists (good)
+        $(document).on('click', '.actions #list-add-to-favourite', function(e){
             e.preventDefault();
-            addToFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+            user_id = $(this).attr("data-user");
+
+            $(this).attr('title', 'Remove from Favourite');
+            $(this).attr('id', 'list-remove-from-favourite');
+            $('.cart #grid-add-to-favourite.book-'+book_id).attr('title', 'Remove from Favourite');
+            $('.cart #grid-add-to-favourite.book-'+book_id).attr('id', 'grid-remove-from-favourite');
+            $(this).blur();
+            addToFavourites(user_id, book_id);
         });
 
-        $('.cart #add-to-favourite').click(function(e){
+        $(document).on('click', '.cart #grid-add-to-favourite', function(e){
             e.preventDefault();
-            addToFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            user_id = $(this).attr("data-user");
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Remove from Favourite");
+            $(this).attr('id', "grid-remove-from-favourite");
+            $('.actions #list-add-to-favourite.book-'+book_id).attr('title', 'Remove from Favourite');
+            $('.actions #list-add-to-favourite.book-'+book_id).attr('id', 'list-remove-from-favourite');
+            $(this).blur();
+            addToFavourites(user_id, book_id);
         });
 
-        $('#remove-from-favourite-detail').click(function(e){
+        // Add from home book lists (good)
+        $(document).on('click', '.cart #home-add-to-favourite', function(e){
             e.preventDefault();
-            removeFromFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            user_id = $(this).attr("data-user");
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Remove from Favourite");
+            $(this).attr('id', "home-remove-from-favourite");
+            $(this).blur();
+            addToFavourites(user_id, book_id);
         });
 
-        $('.actions #remove-from-favourite').click(function(e){
+        // Remove from book page (good)
+        $(document).on('click', '#remove-from-favourite-detail', function(e){
             e.preventDefault();
-            removeFromFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+            user_id = $(this).attr("data-user");
+
+            $(this).attr('title', 'Add to Favourite');
+            $(this).attr('id', 'add-to-favourite-detail');
+            $(this).blur();
+            removeFromFavourites(user_id, book_id);
         });
 
-        $('.cart #remove-from-favourite').click(function(e){
+        // Remove from different book lists (good)
+        $(document).on('click', '.actions #list-remove-from-favourite', function(e){
             e.preventDefault();
-            removeFromFavourites($(this).attr("data-user"), $(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+            user_id = $(this).attr("data-user");
+
+            $(this).attr('title', 'Add to Favourite');
+            $(this).attr('id', 'list-add-to-favourite');
+            $('.cart #grid-remove-from-favourite.book-'+book_id).attr('title', 'Add to Favourite');
+            $('.cart #grid-remove-from-favourite.book-'+book_id).attr('id', 'grid-add-to-favourite');
+            $(this).blur();
+            removeFromFavourites(user_id, book_id);
+        });
+
+        $(document).on('click', '.cart #grid-remove-from-favourite', function(e){
+            e.preventDefault();
+            user_id = $(this).attr("data-user");
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Add from Favourite");
+            $(this).attr('id', "grid-add-to-favourite");
+            $('.actions #list-remove-from-favourite.book-'+book_id).attr('title', 'Add to Favourite');
+            $('.actions #list-remove-from-favourite.book-'+book_id).attr('id', 'list-add-to-favourite');
+            $(this).blur();
+            removeFromFavourites(user_id, book_id);
+        });
+
+        // Remove from home book lists (good)
+        $(document).on('click', '.cart #home-remove-from-favourite', function(e){
+            e.preventDefault();
+            user_id = $(this).attr("data-user");
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Add from Favourite");
+            $(this).attr('id', "home-add-to-favourite");
+            removeFromFavourites(user_id, book_id);
+        });
+
+        // Remove item from wishlist page (good)
+        $('.cart #remove-from-wishlist').click(function(e){
+            e.preventDefault();
+            var book_id = $(this).attr("data-book");
+            var user_id = $(this).attr("data-user");
+
+            $("#list #book-"+book_id).remove();
+            $("#grid #book-"+book_id).remove();
+            removeFromFavourites(user_id, book_id);    
+        });
+
+        $('.actions #remove-from-wishlist').click(function(e){
+            e.preventDefault();
+            var book_id = $(this).attr("data-book");
+            var user_id = $(this).attr("data-user");
+
+            $("#list #book-"+book_id).remove();
+            $("#grid #book-"+book_id).remove();
+            removeFromFavourites(user_id, book_id);
         });
 
         /*===================================================================================*/
@@ -506,36 +598,112 @@
 
         }
 
-        // Adding to cart
-        $('.cart #add-to-cart').click(function(e){
+        // Add from book detail
+        $(document).on('click', '#add-to-cart-detail', function(e){
             e.preventDefault();
-            addToCart($(this).attr("data-book"), $(this).attr("data-price"));
+            book_id = $(this).attr("data-book");
+            price = $(this).attr("data-price");
+
+            $(this).attr('title', 'Remove to Cart');
+            $(this).find('span').html('Remove');
+            $(this).attr('id', 'remove-from-cart-detail');
+            $(this).blur();
+            addToCart(book_id, price);
         });
 
-        $('.actions #add-to-cart').click(function(e){
+        // Add from different book lists 
+        $(document).on('click', '.cart #grid-add-to-cart', function(e){
             e.preventDefault();
-            addToCart($(this).attr("data-book"), $(this).attr("data-price"));
+            book_id = $(this).attr("data-book");
+            price = $(this).attr("data-price");
+
+            $(this).attr('title', "Remove from Cart");
+            $(this).attr('id', "grid-remove-from-cart");
+            $('.actions #list-add-to-cart.book-'+book_id).attr('title', 'Remove from Cart');
+            $('.actions #list-add-to-cart.book-'+book_id).attr('id', 'list-remove-from-cart');
+            $(this).blur();
+            addToCart(book_id, price);
         });
 
-        $('#add-to-cart-detail').click(function(e){
+         $(document).on('click', '.actions #list-add-to-cart', function(e){
             e.preventDefault();
-            addToCart($(this).attr("data-book"), $(this).attr("data-price"));
+            book_id = $(this).attr("data-book");
+            price = $(this).attr("data-price");
+        
+            $(this).attr('title', "Remove from Cart");
+            $(this).attr('id', "list-remove-from-cart");
+            $('.cart #grid-add-to-cart.book-'+book_id).attr('title', 'Remove from Cart');
+            $('.cart #grid-add-to-cart.book-'+book_id).attr('id', 'grid-remove-from-cart');
+            $(this).blur();
+            addToCart(book_id, price);
         });
 
-        // removing from cart
-        $('.cart #remove-from-cart').click(function(e){
+         // Add from home book lists (good)
+        $(document).on('click', '.cart #home-add-to-cart', function(e){
             e.preventDefault();
-            removeFromCart($(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+            price = $(this).attr("data-price");
+
+            $(this).attr('title', "Remove from Cart");
+            $(this).attr('id', "home-remove-from-cart");
+            $(this).find('i').removeClass('icon icon-plus');
+            $(this).find('i').removeClass('fa fa-plus-circle');
+            $(this).find('i').addClass('icon icon-minus');
+            $(this).find('i').addClass('fa fa-minus-circle');
+            $(this).blur();
+            addToCart(book_id, price);
         });
 
-        $('.actions #remove-from-cart').click(function(e){
+        // Remove from book detail
+        $(document).on('click', '#remove-from-cart-detail', function(e){
             e.preventDefault();
-            removeFromCart($(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', 'Add to Cart');
+            $(this).find('span').html('Add');
+            $(this).attr('id', 'add-to-cart-detail');
+            $(this).blur();
+            removeFromCart(book_id);
         });
 
-        $('#remove-from-cart-detail').click(function(e){
+        // Remove from differents pages
+        $(document).on('click', '.cart #grid-remove-from-cart', function(e){
             e.preventDefault();
-            removeFromCart($(this).attr("data-book"));
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Add to Cart");
+            $(this).attr('id', "grid-add-to-cart");
+            $('.actions #list-remove-from-cart.book-'+book_id).attr('title', 'Add to Cart');
+            $('.actions #list-remove-from-cart.book-'+book_id).attr('id', 'list-add-to-cart');
+            $(this).blur();
+            removeFromCart(book_id);
+        });
+
+        $(document).on('click', '.actions #list-remove-from-cart', function(e){
+            e.preventDefault();
+            book_id = $(this).attr("data-book");
+
+            $(this).attr('title', "Add to Cart");
+            $(this).attr('id', "list-add-to-cart");
+            $('.cart #grid-remove-from-cart.book-'+book_id).attr('title', 'Add to Cart');
+            $('.cart #grid-remove-from-cart.book-'+book_id).attr('id', 'grid-add-to-cart');
+            $(this).blur();
+            removeFromCart(book_id);
+        });
+
+        // Remove from home book lists (good)
+        $(document).on('click', '.cart #home-remove-from-cart', function(e){
+            e.preventDefault();
+            book_id = $(this).attr("data-book");
+        
+            $(this).attr('title', "Add to Cart");
+            $(this).attr('id', "home-add-to-cart");
+            $(this).find('i').removeClass('icon icon-minus');
+            $(this).find('i').removeClass('fa fa-minus-circle');
+            $(this).find('i').addClass('icon icon-plus');
+            $(this).find('i').addClass('fa fa-plus-circle');
+            $(this).blur();
+            removeFromCart(book_id);
         });
 
         // remove a book from cart page

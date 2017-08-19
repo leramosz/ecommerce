@@ -58,7 +58,7 @@
             <div class="tab-content">
                 <div class="tab-pane wow fadeInUp <?=(count($books) < 4) ? 'active':''?>" id="list" role="tabpanel" style="visibility: visible; animation-name: fadeInUp;">
                     <? foreach($books as $book): ?>
-                        <div class="featured-book">   
+                        <div class="featured-book" id="book-<?=$book['id']?>">   
                             <div class="books clearfix">
                                 <div class="row">
                                     <div class="col-md-3 col-sm-5">
@@ -109,14 +109,14 @@
 
                                         </div><!-- /.featured-book-content -->
                                         <div class="actions">
-                                            <a class="add-to-cart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                            <a class="add-to-cart book-<?=$book['id']?>" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'list-remove-from-cart':'list-add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
                                                 <? if(array_key_exists($book['id'], $session_cart_books)): ?>
                                                     <i class="icon icon-minus fa fa-minus-circle"></i>
                                                 <? else: ?>
                                                     <i class="icon icon-plus fa fa-plus-circle"></i>
                                                 <? endif; ?>
                                             </a>
-                                            <a class="add-to-cart" id="remove-from-favourite" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="Remove from Favourite">
+                                            <a class="add-to-cart" id="remove-from-wishlist" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="Remove from Favourite">
                                                 <i class="icon icon-heart fa fa-heart"></i>
                                             </a>
                                         </div><!-- /.actions -->
@@ -130,7 +130,7 @@
                     <div class="category-books books grid-view">
                         <div class="row">
                            <? foreach($books as $book): ?>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-3 col-sm-6" id="book-<?=$book['id']?>">
                                     <div class="book">      
                                         <? if($book['hot']): ?> 
                                             <div class="hot-ribbon">
@@ -160,14 +160,14 @@
                                                 </div><!-- /.book-price -->
                                                 <div class="cart animate-effect">
                                                     <div class="action">
-                                                        <a class="add-to-cart" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'remove-from-cart':'add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
+                                                        <a class="add-to-cart book-<?=$book['id']?>" id="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'grid-remove-from-cart':'grid-add-to-cart'?>" data-book="<?=$book['id']?>" data-price="<?=($book['sale_off']) ? $book['sale_off']:$book['price']?>" title="<?=(array_key_exists($book['id'], $session_cart_books)) ? 'Remove from Cart':'Add to Cart'?>" href="#">
                                                             <? if(array_key_exists($book['id'], $session_cart_books)): ?>
                                                                 <i class="icon icon-minus fa fa-minus-circle"></i>
                                                             <? else: ?>
                                                                 <i class="icon icon-plus fa fa-plus-circle"></i>
                                                             <? endif; ?>
                                                         </a>
-                                                        <a class="add-to-cart" id="remove-from-favourite" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="Remove from Favourite">
+                                                        <a class="add-to-cart" id="remove-from-wishlist" data-book="<?=$book['id']?>" data-user="<?=USER?>" href="#" title="Remove from Favourite">
                                                             <i class="icon icon-heart fa fa-heart"></i>
                                                         </a>
                                                     </div><!-- /.action -->

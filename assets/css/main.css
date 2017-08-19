@@ -770,40 +770,151 @@ a:active {
   font-size: 20px;
   color: #fff;
 }
-.book .book-cover .cart .action #add-to-cart {
+
+/* ADD FAVOURITES HOME PAGE */
+.book .book-cover .cart .action #home-add-to-favourite {
   text-decoration: none;
   color: #FFFFFF;
 }
-.book .book-cover .cart .action #add-to-cart:hover,
-.book .book-cover .cart .action #add-to-cart:focus {
-  text-decoration: none;
-  color: #a2b718;
-}
-.book .book-cover .cart .action #remove-from-cart {
-  text-decoration: none;
-  color: #a2b718;
-}
-.book .book-cover .cart .action #remove-from-cart:hover,
-.book .book-cover .cart .action #remove-from-cart:focus {
-  text-decoration: none;
-  color: #FFFFFF;
-}
-.book .book-cover .cart .action #add-to-favourite {
-  text-decoration: none;
-  color: #FFFFFF;
-}
-.book .book-cover .cart .action #add-to-favourite:hover,
-.book .book-cover .cart .action #add-to-favourite:focus {
+.book .book-cover .cart .action #home-add-to-favourite:hover,
+.book .book-cover .cart .action #home-add-to-favourite:focus {
   text-decoration: none;
   color: #FF0000;
 }
-.book .book-cover .cart .action #remove-from-favourite {
+/* ADD FAVOURITES DIFFERENT PAGES */
+.book .book-cover .book-inner .cart .action #grid-add-to-favourite {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .book-inner .cart .action #grid-add-to-favourite:hover,
+.book .book-cover .book-inner .cart .action #grid-add-to-favourite:focus {
   text-decoration: none;
   color: #FF0000;
 }
-.book .book-cover .cart .action #remove-from-favourite:hover,
-.book .book-cover .cart .action #remove-from-favourite:focus {
+.featured-book .actions #list-add-to-favourite {
   text-decoration: none;
+  color: #FFFFFF;
+}
+.featured-book .actions #list-add-to-favourite:hover,
+.featured-book .actions #list-add-to-favourite:focus {
+  text-decoration: none;
+  color: #FF0000;
+}
+/* ADD FAVOURITE BOOK DETAIL PAGE*/
+.product-actions #add-to-favourite-detail {
+  color: #FFFFFF;
+}
+.product-actions #add-to-favourite-detail:hover,
+.product-actions #add-to-favourite-detail:focus {
+  color: #FF0000;
+}
+/* REMOVE FAVOURITE HOME PAGE */
+.book .book-cover .cart .action #home-remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.book .book-cover .cart .action #home-remove-from-favourite:hover,
+.book .book-cover .cart .action #home-remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* REMOVE FAVOURITE DIFFERENT PAGES*/
+.featured-book .actions #list-remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.featured-book .actions #list-remove-from-favourite:hover,
+.featured-book .actions #list-remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .book-inner .cart .action #grid-remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.book .book-cover .book-inner .cart .action #grid-remove-from-favourite:hover,
+.book .book-cover .book-inner .cart .action #grid-remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* REMOVE FAVOURITE BOOK DETAIL PAGE*/
+.product-actions #remove-from-favourite-detail {
+  color: #FF0000;
+}
+.product-actions #remove-from-favourite-detail:hover,
+.product-actions #remove-from-favourite-detail:focus {
+  color: #FFFFFF; 
+}
+/* REMOVE FAVOURITES WISHLISH PAGE */
+.book .book-cover .cart .action #remove-from-wishlist {
+  text-decoration: none;
+  color: #FF0000;
+}
+.book .book-cover .cart .action #remove-from-wishlist:hover,
+.book .book-cover .cart .action #remove-from-wishlist:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.featured-book .actions #remove-from-wishlist {
+  color: #FF0000;
+}
+.featured-book .actions #remove-from-wishlist:hover,
+.featured-book .actions #remove-from-wishlist:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* ADD CART FROM HOME PAGE*/
+.book .book-cover .cart .action #home-add-to-cart {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .cart .action #home-add-to-cart:hover,
+.book .book-cover .cart .action #home-add-to-cart:focus {
+  text-decoration: none;
+  color: #a2b718;
+}
+/* ADD CART FROM DIFFERENT PAGES*/
+.book .book-cover .cart .action #grid-add-to-cart {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.book .book-cover .cart .action #grid-add-to-cart:hover,
+.book .book-cover .cart .action #grid-add-to-cart:focus {
+  text-decoration: none;
+  color: #a2b718;
+}
+.featured-book .actions #list-add-to-cart {
+  color: #FFFFFF;
+}
+.featured-book .actions #list-add-to-cart:hover,
+.featured-book .actions #list-add-to-cart:focus {
+  color: #a2b718;
+}
+/* REMOVE CART FROM HOME PAGE*/
+.book .book-cover .cart .action #home-remove-from-cart {
+  text-decoration: none;
+  color: #a2b718;
+}
+.book .book-cover .cart .action #home-remove-from-cart:hover,
+.book .book-cover .cart .action #home-remove-from-cart:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+/* REMOVE FROM CART DIFFERENT PAGES */
+.book .book-cover .cart .action #grid-remove-from-cart {
+  text-decoration: none;
+  color: #a2b718;
+}
+.book .book-cover .cart .action #grid-remove-from-cart:hover,
+.book .book-cover .cart .action #grid-remove-from-cart:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.featured-book .actions #list-remove-from-cart {
+  color: #a2b718;
+}
+.featured-book .actions #list-remove-from-cart:hover,
+.featured-book .actions #list-remove-from-cart:focus {
   color: #FFFFFF;
 }
 .book .book-cover .cart .action a:first-child {
@@ -1842,34 +1953,30 @@ a:active {
   color: #FFF;
   font-size: 29px;
 }
-.featured-book .actions #add-to-cart {
-  color: #FFFFFF;
-}
-.featured-book .actions #add-to-cart:hover,
-.featured-book .actions #add-to-cart:focus {
-  color: #a2b718;
-}
-.featured-book .actions #remove-from-cart {
-  color: #a2b718;
-}
-.featured-book .actions #remove-from-cart:hover,
-.featured-book .actions #remove-from-cart:focus {
-  color: #FFFFFF;
-}
-.featured-book .actions .action #add-to-favourite {
+
+/*.featured-book .actions .action #add-to-favourite {
   color: #FFFFFF;
 }
 .featured-book .actions #add-to-favourite:hover,
 .featured-book .actions #add-to-favourite:focus {
   text-decoration: none;
   color: #FF0000;
-}
-.featured-book .actions #remove-from-favourite {
+}*/
+.featured-book .actions #list-remove-from-favourite {
   text-decoration: none;
   color: #FF0000;
 }
-.featured-book .actions #remove-from-favourite:hover,
+.featured-book .actions #list-remove-from-favourite:hover,
 .featured-book .actions #remove-from-favourite:focus {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.featured-book .actions #grid-remove-from-favourite {
+  text-decoration: none;
+  color: #FF0000;
+}
+.featured-book .actions #grid-remove-from-favourite:hover,
+.featured-book .actions #grid-remove-from-favourite:focus {
   text-decoration: none;
   color: #FFFFFF;
 }
@@ -2121,20 +2228,7 @@ a:active {
   margin-left: -1px;
   font-size: 22px;
 }
-.product-actions #add-to-favourite-detail {
-  color: #FFFFFF;
-}
-.product-actions #add-to-favourite-detail:hover,
-.product-actions #add-to-favourite-detail:focus {
-  color: #FF0000;
-}
-.product-actions #remove-from-favourite-detail {
-  color: #FF0000;
-}
-.product-actions #remove-from-favourite-detail:hover,
-.product-actions #remove-from-favourite-detail:focus {
-  color: #FFFFFF;
-}
+
 .product-description h3 {
   font-family: 'RobotoBlack';
   font-size: 24px;
