@@ -42,7 +42,10 @@ Table of Contents
     width: auto;
     height: auto;
 }
-
+.order-detail.purchase-detail {
+  margin-bottom: -40px;
+  overflow-y: hidden;
+}
 .green-text {
   color: #629c49 !important;
 }
@@ -533,6 +536,9 @@ a:active {
 }
 .table-cart.cart-detail th.dark {
   background: #19896b;
+}
+.table-cart.cart-detail th.not-dark {
+  background: #51813c;
 }
 .table-cart.cart-detail th {
   background: #1b9574;

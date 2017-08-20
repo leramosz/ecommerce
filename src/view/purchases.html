@@ -1,0 +1,123 @@
+
+    <div class="content">
+        <div class="breadcrumb-container">
+            <div class="container">
+                <ul class="breadcrumb pull-left">
+                    <li><a href="<?=BASE_URL?>">Home</a></li>
+                    <li class="active">Purchases</li>
+                </ul><!-- /.breadcrumb -->
+
+            </div><!-- /.container -->
+        </div><!-- /.breadcrumb-container -->
+
+        <div class="cart page">
+            <div class="container">
+
+                <? if(count($purchases) > 0): ?>
+                    <div class="page-header">
+                        <h2 class="page-title">Purchases</h2>
+                        <p class="page-subtitle">DO eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div><!-- /.page-header -->
+
+                    <div class="page-body">
+                        <div id="order-detail" class="order-detail table-responsive">
+                            <table class="table table-cart cart-detail ">
+                                <thead>
+                                    <tr>
+                                        <th class="dark">Order ID</th>
+                                        <th>Date</th>
+                                        <th class="dark text-center">Total</th>
+                                        <th class="not-dark"></th>
+                                    </tr>
+                                </thead><!-- /thead -->                
+                                <tbody class="cart-body-content">
+                                    <? foreach($purchases as $key => $purchase): ?>
+                                        <tr class="cart-book">
+                                            <td>
+                                                <span class="price subtotal">
+                                                    <?=$purchase['id']?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="price subtotal">
+                                                    <?=date("F jS, Y", strtotime($purchase['time']))?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span class="price subtotal">
+                                                    $<?=sprintf('%0.2f', $purchase['total'])?></td>
+                                                </span>
+                                            <td>
+                                                <a id="view-purchases" data-purchase="<?=$key+1?>" href="#">   View Detail
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <? endforeach; ?>
+                                </tbody><!-- /.cart-body-content -->
+                            </table><!-- /.table -->
+                        </div><!-- /.order-detail -->
+
+                        <? foreach($purchases as $key => $purchase): ?>
+                            <div id="purchase" class="purchase-<?=$key+1?> order-detail table-responsive" style="display: none">
+                                <div class="page-header">
+                                    <h2 class="page-title">Detail</h2>
+                                </div><!-- /.page-header -->
+                                <table class="table table-cart cart-detail ">
+                                    <thead>
+                                        <tr>
+                                            <th class="dark">Book Name</th>
+                                            <th>QTY</th>
+                                            <th class="dark text-center">Total</th>
+                                        </tr>
+                                    </thead><!-- /thead -->                
+                                    <tbody class="cart-body-content">
+                                        <? foreach($purchase['purchase-detail'] as $detail): ?>
+                                            <tr class="cart-book">
+                                                <td>
+                                                    <div class="media">
+                                                        <a href="<?=BASE_URL?>/books/<?=$detail['book_id']?>" width="72" heigh="99" class="cart-thumbnail-image media-left">
+                                                            <div class="book-cover small-book-cover">
+                                                                <img src="<?=BASE_URL.$detail['book-detail']['image']?>" alt="" class="media-object">
+                                                                <div class="fade"></div>
+                                                            </div>
+                                                        </a>
+                                                        <div class="media-body">
+                                                            <h3 class="media-heading">
+                                                                <a href="<?=BASE_URL?>/books/<?=$detail['book_id']?>">
+                                                                    <?=$detail['book-detail']['name']?>
+                                                                </a>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td >
+                                                    <span class="price subtotal">
+                                                        <?=$detail['quantity']?>  
+                                                    </span>  
+                                                </td>
+                                                <td>
+                                                    <span class="price subtotal">
+                                                        $<?=sprintf('%0.2f', $detail['subtotal'])?>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        <? endforeach; ?>
+                                    </tbody><!-- /.cart-body-content -->
+                                </table><!-- /.table -->
+                            </div><!-- /.order-detail -->
+                        <? endforeach; ?>
+                    </div><!-- /.page-body -->
+                <? else: ?>
+                    <div class="page-header">
+                        <h2 class="page-title">OOPS! There's no Purchases</h2>
+                        <p class="page-subtitle">DO eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+                    </div><!-- /.page-header -->
+                <? endif; ?>
+            </div><!-- /.container -->
+        </div><!-- /.cart page -->            
+        <a class="scrollup hidden-xs hidden-sm" href="#" style="display: none;">
+            <img src="<?=BASE_URL?>/assets/images/top-scroll.png" alt="" >
+        </a>
+    </div>
+
+ </div><!-- /.container -->

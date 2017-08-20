@@ -18,7 +18,7 @@
                     <li><a id="logout" href="#">Logout</a></li>
                 <? endif; ?>
                 <? if(isset($session_user)): ?>
-                    <li><a href="<?=BASE_URL?>/checkout">Checkout</a></li>
+                    <li><a href="<?=BASE_URL?>/purchases">Purchases</a></li>
                     <li class="active">
                         <a id="cart-amount" data-cart-amount="<?=$cart_amount?>" href="<?=BASE_URL?>/cart">Total : $<?=sprintf('%0.2f', $cart_amount)?></a>
                     </li>

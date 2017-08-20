@@ -12,7 +12,7 @@ class LoginModel extends Model {
 
 		$this->db->selectTable('user');
 		$this->db->select(array('id', 'name', 'mail'))
-					->where(array('username' => $username))->and(array('password' => $password));
+					->where(array('username' => $username))->and_operator(array('password' => $password));
 
 		$user = $this->db->query();
 

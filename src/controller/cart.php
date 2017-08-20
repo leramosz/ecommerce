@@ -1,11 +1,13 @@
 <?
 require_once MODEL_DIR."/cart.php";
+require_once MODEL_DIR."/purchase.php";
 
 class Cart extends Controller {
 
 	function __construct() {
 		parent::__construct();
 		$this->Cart = new CartModel();
+		$this->Purchase = new PurchaseModel();
 	}
 
 	public function index($params = false) {
@@ -71,7 +73,7 @@ class Cart extends Controller {
 
 	}
 
-	public function delete_cart_page($params){
+	public function delete_cart_page($params = false){
 
 		$session_cart_books = $this->session->get('session-cart-books');
 		$this->session->set('cart-amount', $params['cart_amount']);
@@ -89,6 +91,26 @@ class Cart extends Controller {
 
 		echo "removed";
 		exit(0);
+	}
+
+	public function checkout($params = false){
+
+		$user = $this->session->get('session-user');
+		$cart = $this->session->get('session-cart-books');
+		$total = $this->session->get('cart-amount');
+		
+		$purchase_id = $this->Purchase->create($user, $cart, $total);
+
+		$this->session->set('cart-amount', '0.00');
+		$this->session->set('cart-count', '0');
+		$this->session->set('session-cart-books', array());
+
+		$this->view->assign('purchase_id', $purchase_id);
+		echo $this->view->render("checkout.html");
+
+		exit(0);
+
+
 	}
 	
 }

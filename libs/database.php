@@ -65,7 +65,14 @@ class Database {
 
 	}
 
-	public function and($condition, $table = false, $operator = "=") {
+	public function group_by ($group) {
+
+		$this->sql .= " GROUP BY ".$group;
+		return $this;
+
+	}
+
+	public function and_operator($condition, $table = false, $operator = "=") {
 
 		$table = ($table) ? $table : $this->selectTable;
 		list($key, $value) = each($condition);

@@ -16,7 +16,7 @@ RewriteRule ^authors index.php?controller=author&action=index
 
 RewriteRule ^cart index.php?controller=cart&action=index
 
-RewriteRule ^checkout index.php?controller=checkout&action=index
+RewriteRule ^purchases index.php?controller=purchase&action=index
 
 RewriteRule ^contact index.php?controller=contact&action=index
 
@@ -25,7 +25,5 @@ RewriteRule ^wishlist index.php?controller=wishlist&action=index
 RewriteRule ^register index.php?controller=login&action=register
 
 RewriteRule ^login index.php?controller=login&action=index
-
-RewriteRule ^logout index.php?controller=login&action=logout
 
 ErrorDocument 404 /bookstore/index.php?action=error

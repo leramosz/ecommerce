@@ -815,6 +815,49 @@
 
         });
 
+        /*===================================================================================*/
+        /*  CHECKOUT
+        /*===================================================================================*/
+
+        $(document).on('click', "#checkout", function(e){
+             e.preventDefault();
+
+             $.ajax({
+
+                url: BASE_URL,
+                type: 'POST',
+                data: { controller: 'cart', action: 'checkout' },
+                dataType: 'json',
+                complete: function (result) {
+                    $('#cart-amount').attr('data-cart-amount', '0.00');
+                    $('#cart-count').attr('data-cart-count', '0');
+                    $('#cart-amount').html('Total : $0.00');
+                    $('#cart-count').html('0');
+                    $("#ajax-content").html(result.responseText);
+                    $("html, body").animate({ scrollTop: 0 }, "slow");  
+                },
+            
+            });
+        });
+
+        /*===================================================================================*/
+        /*  PURCHASES DETAIL
+        /*===================================================================================*/
+
+        $(document).on('click', '#view-purchases', function(e){
+            e.preventDefault();
+            var view = $(this).attr('data-purchase');
+
+            $('.page-body #order-detail').addClass('purchase-detail');
+
+            $('.page-body #purchase').hide();
+            $('#purchase.purchase-'+view).show();
+
+            var aTag = $('#purchase.purchase-'+view);
+            $('html,body').animate({scrollTop: aTag.offset().top},'slow');
+
+        });
+
 })(jQuery);
 
 
