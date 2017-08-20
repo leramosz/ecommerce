@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-08-2017 a las 02:29:11
+-- Tiempo de generación: 20-08-2017 a las 06:29:35
 -- Versión del servidor: 10.1.25-MariaDB
 -- Versión de PHP: 7.1.7
 
@@ -189,6 +189,78 @@ INSERT INTO `genre` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `purchase`
+--
+
+CREATE TABLE `purchase` (
+  `id` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `total` float UNSIGNED NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `purchase`
+--
+
+INSERT INTO `purchase` (`id`, `total`, `time`) VALUES
+('ORDER-5998e94111df5', 67.45, '2017-08-20 01:43:29'),
+('ORDER-5998ea7d8cc68', 196.6, '2017-08-20 01:48:45'),
+('ORDER-5998eb1e1975f', 142.33, '2017-08-20 01:51:26'),
+('ORDER-59990328a54e4', 18.65, '2017-08-20 03:34:00'),
+('ORDER-5999044109ff1', 99.15, '2017-08-20 03:38:41'),
+('ORDER-59990829f236e', 30.15, '2017-08-20 03:55:21'),
+('ORDER-599908df87ba3', 33.64, '2017-08-20 03:58:23'),
+('ORDER-59990a544908b', 125.9, '2017-08-20 04:04:36'),
+('ORDER-59990b0e7075d', 52.44, '2017-08-20 04:07:42'),
+('ORDER-59990bc06c593', 158, '2017-08-20 04:10:40'),
+('ORDER-59990be0e130a', 7, '2017-08-20 04:11:12');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `purchase_detail`
+--
+
+CREATE TABLE `purchase_detail` (
+  `purchase_id` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `book_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `subtotal` float NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `purchase_detail`
+--
+
+INSERT INTO `purchase_detail` (`purchase_id`, `user_id`, `book_id`, `quantity`, `subtotal`) VALUES
+('ORDER-5998e94111df5', 1, 1, 2, 37.3),
+('ORDER-5998e94111df5', 1, 3, 1, 30.15),
+('ORDER-5998ea7d8cc68', 1, 1, 1, 18.65),
+('ORDER-5998ea7d8cc68', 1, 9, 2, 48.9),
+('ORDER-5998ea7d8cc68', 1, 10, 2, 91.6),
+('ORDER-5998ea7d8cc68', 1, 11, 1, 37.45),
+('ORDER-5998eb1e1975f', 2, 2, 2, 29.98),
+('ORDER-5998eb1e1975f', 2, 11, 3, 112.35),
+('ORDER-59990328a54e4', 1, 1, 1, 18.65),
+('ORDER-5999044109ff1', 2, 1, 1, 18.65),
+('ORDER-5999044109ff1', 2, 10, 1, 45.8),
+('ORDER-5999044109ff1', 2, 12, 1, 34.7),
+('ORDER-59990829f236e', 1, 3, 1, 30.15),
+('ORDER-599908df87ba3', 1, 1, 1, 18.65),
+('ORDER-599908df87ba3', 1, 2, 1, 14.99),
+('ORDER-59990a544908b', 1, 11, 2, 74.9),
+('ORDER-59990a544908b', 1, 14, 2, 51),
+('ORDER-59990b0e7075d', 1, 2, 1, 14.99),
+('ORDER-59990b0e7075d', 1, 11, 1, 37.45),
+('ORDER-59990bc06c593', 1, 1, 2, 37.3),
+('ORDER-59990bc06c593', 1, 10, 1, 45.8),
+('ORDER-59990bc06c593', 1, 11, 2, 74.9),
+('ORDER-59990be0e130a', 1, 4, 2, 7);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `user`
 --
 
@@ -196,6 +268,7 @@ CREATE TABLE `user` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `mail` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -203,9 +276,9 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `mail`, `password`) VALUES
-(1, 'Leo Ramos', 'leo@gmail.com', '12345'),
-(2, 'test', 'test@gmail.com', '11111');
+INSERT INTO `user` (`id`, `name`, `mail`, `username`, `password`) VALUES
+(1, 'Leo Ramos', 'leo@gmail.com', 'leo', '12345'),
+(2, 'test', 'test@gmail.com', 'test', '11111');
 
 -- --------------------------------------------------------
 
@@ -223,9 +296,11 @@ CREATE TABLE `wishlist` (
 --
 
 INSERT INTO `wishlist` (`user_id`, `book_id`) VALUES
-(2, 2),
-(2, 3),
-(2, 4);
+(1, 3),
+(1, 4),
+(1, 5),
+(1, 11),
+(1, 14);
 
 --
 -- Índices para tablas volcadas
@@ -262,6 +337,18 @@ ALTER TABLE `genre`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `purchase`
+--
+ALTER TABLE `purchase`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `purchase_detail`
+--
+ALTER TABLE `purchase_detail`
+  ADD PRIMARY KEY (`purchase_id`,`user_id`,`book_id`);
+
+--
 -- Indices de la tabla `user`
 --
 ALTER TABLE `user`
@@ -296,7 +383,7 @@ ALTER TABLE `genre`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
