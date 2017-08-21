@@ -742,7 +742,8 @@
         });
 
         $(document).on('click', '#logout', function(e) {
-
+            e.preventDefault();
+        
             $.ajax({
 
                 url: BASE_URL,

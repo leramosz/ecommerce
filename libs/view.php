@@ -8,6 +8,7 @@ class View {
 		
 	}
 
+    /* It renders a template file. */
 	public function render($template_file) {
 
 		if (file_exists(TEMPLATE_DIR.'/'.$template_file)) {
@@ -33,16 +34,14 @@ class View {
 
 	}
 
+    /* It creates a variable array to be passed to the template file. */
 	public function assign($name, $value) {
-
         $this->vars[$name] = $value;
-
     }
 
+    /* It creates a displays the final page for the user. */
     public function display($template_file) {
-
         return $this->render($template_file);
-    
     }
 
 }

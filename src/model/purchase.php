@@ -6,6 +6,8 @@ class PurchaseModel extends Model {
 		parent::__construct();
 	}
 
+	/* It creates a new purchase order making use of the Database class and returns */
+	/* the data to the controller */
 	public function create($user, $cart, $total) {
 
 		$purchase_id = uniqid("ORDER-");
@@ -13,6 +15,7 @@ class PurchaseModel extends Model {
 		$fields = array("id" => $purchase_id, "total" => $total);
 		$this->db->insert('purchase', $fields);	
 
+		// saving every book from the cart
 		foreach($cart as $book_id => $values) {
 
 			$fields = array(
@@ -30,6 +33,8 @@ class PurchaseModel extends Model {
 
 	}
 
+	/* It gets an user's purchase list making use of the Database class and returns */
+	/* the data to the controller */
 	public function getPurchases($user_id) {
 
 		$purchases = array();
@@ -47,6 +52,7 @@ class PurchaseModel extends Model {
 
 		$purchases = $this->db->query();	
 
+		// getting the books that belongs to the purchase order
 		foreach ($purchases as &$purchase) {
 			
 			$this->db->selectTable('purchase_detail');
@@ -58,6 +64,7 @@ class PurchaseModel extends Model {
 
 			$purchase['purchase-detail'] = $this->db->query();	
 
+			// getting additional book information
 			foreach ($purchase['purchase-detail'] as &$detail) {
 				
 				$this->db->selectTable('book');

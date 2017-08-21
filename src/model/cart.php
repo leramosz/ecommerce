@@ -6,6 +6,8 @@ class CartModel extends Model {
 		parent::__construct();
 	}
 
+	/* It gets books to be shown in the cart page making use the Database class */
+	/* and returns the data to the controller 									*/
 	public function getCartBooks($books) {
 
 		$cart_books = array();

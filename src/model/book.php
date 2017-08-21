@@ -6,6 +6,7 @@ class BookModel extends Model {
 		parent::__construct();
 	}
 
+	/* It gets all books making use of the Database class and returns the data to the controller */
 	public function getBooks($genre_id = false) {
 
 		$books = array();
@@ -13,6 +14,7 @@ class BookModel extends Model {
 		$this->db->selectTable('book');
 		$this->db->select(array('id', 'name', 'price', 'overview', 'sale_off', 'hot', 'rating', 'image'));
 
+		// getting books filtered by genre_id if needed
 		if ($genre_id) {
 			$this->db->joinTable('book_genre');
 			$this->db->join(array("id" => "book_id"))
@@ -21,6 +23,7 @@ class BookModel extends Model {
 
 		$books = $this->db->query();
 
+		// if there are books to show, getting their authors 	
 		if ($books) {
 
 			$this->db->selectTable('author');
@@ -38,9 +41,11 @@ class BookModel extends Model {
 			return $books;
 
 		}
+
 		return false;
 	}
 
+	/* It gets a book making use of the Database class and return the data to the controller */
 	public function getBook($book_id) {
 
 		$book = array();
@@ -51,6 +56,7 @@ class BookModel extends Model {
 
 		$book = $this->db->query();
 
+		// if the book exists, getting author and related book
 		if (isset($book[0])) {
 
 			// getting book's author
@@ -74,6 +80,7 @@ class BookModel extends Model {
 
 			$book[0]['related_books'] = $this->db->query();
 
+			// if related books exist, getting their authors
 			if ($book[0]['related_books']) {
 
 				$this->db->selectTable('author');

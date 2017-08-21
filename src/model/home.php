@@ -6,6 +6,8 @@ class HomeModel extends Model {
 		parent::__construct();
 	}
 
+	/* It gets the books to be show in the slider section making use of the Database class */
+	/* and returns the data to the controller */
 	public function getSliderBooks() {
 
 		$slider_books = array();
@@ -19,6 +21,8 @@ class HomeModel extends Model {
 		return $slider_books;
 	}
 
+	/* It gets the books to be show in the new books section making use of the Database class */
+	/* and returns the data to the controller */
 	public function getNewBooks(){
 
 		$new_books = array();
@@ -32,6 +36,7 @@ class HomeModel extends Model {
 		$this->db->selectTable('author');
 		$this->db->joinTable('book');
 
+		// getting books' authors
 		foreach($new_books as &$new_book) {
 
 			$this->db->select(array('id', 'name'))->join(array('id' => 'author_id'))
@@ -45,6 +50,8 @@ class HomeModel extends Model {
 
 	}
 
+	/* It gets the books to be show in the best seller section making use of the Database class */
+	/* and returns the data to the controller */
 	public function getBestSellers(){
 
 		$best_sellers = array();
@@ -58,6 +65,7 @@ class HomeModel extends Model {
 		$this->db->selectTable('author');
 		$this->db->joinTable('book');
 
+		// getting books' authors
 		foreach($best_sellers as &$best_seller) {
 
 			$this->db->select(array('id', 'name'))->join(array('id' => 'author_id'))
@@ -71,6 +79,8 @@ class HomeModel extends Model {
 
 	}
 
+	/* It gets the authors to be show in the featured authors section making use of the Database class */
+	/* and returns the data to the controller */
 	public function getFeaturedAuthors() {
 
 		$authors = array();

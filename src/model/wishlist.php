@@ -6,6 +6,8 @@ class WishlistModel extends Model {
 		parent::__construct();
 	}
 
+	/* It gets an user's wishlist making use of the Database class and returns the data */
+	/* to the controller */
 	public function getWishlist($user_id) {
 
 		$wishlist = array();
@@ -26,19 +28,23 @@ class WishlistModel extends Model {
 
 	}
 
+	/* It adds an book to a user's wishlist making use of the Database class and returns */
+	/* the data to the controller */
 	public function addToWishlist($fields) {
 		if ($this->db->insert('wishlist', $fields)) {
-			return "Added to Wishlist";
+			return "OK";
 		} else {
-			return "Error";
+			return "KO";
 		}
 	}
 
+	/* It removes an book from a user's wishlist making use of the Database class and returns */
+	/* the data to the controller */
 	public function removeFromWishlist($fields) {
 		if ($this->db->delete('wishlist', $fields)) {
-			return "Removed from Wishlist";
+			return "OK";
 		} else {
-			return "Error";
+			return "KO";
 		}
 	}
 }

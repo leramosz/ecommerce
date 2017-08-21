@@ -6,6 +6,8 @@ class LoginModel extends Model {
 		parent::__construct();
 	}
 
+	/* It gets the user after login making use of the Database class and returns */
+	/* the data to the controller */
 	public function login($username, $password){
 
 		$user = array();
@@ -20,10 +22,14 @@ class LoginModel extends Model {
 
 	}
 
+	/* It register a new user making use of the Database class and returns the data to */
+	/* the controller */
 	public function register($fields) {
 		return $this->db->insert('user', $fields);
 	}
 
+	/* It gets a user making use of the Database class and returns the data to the */
+	/* controller */
 	public function user($username) {
 
 		$user = array();

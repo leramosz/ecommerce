@@ -6,7 +6,7 @@ class GenreModel extends Model {
 		parent::__construct();
 	}
 
-
+	/* It gets the list of genres making use of the Database class and returns the data to the controller */
 	public function getGenres($genre_id = false) {
 
 		$genres = array();
