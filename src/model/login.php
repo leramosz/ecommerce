@@ -18,7 +18,7 @@ class LoginModel extends Model {
 
 		$user = $this->db->query();
 
-		return $user[0];
+		return (isset($user[0])) ? $user[0]:false;
 
 	}
 
