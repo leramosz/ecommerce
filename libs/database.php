@@ -12,7 +12,7 @@ class Database {
 	function __construct() {
 		
 		//connecting to the mysql database
-		$this->link = new mysqli('localhost', 'leo', '3eM9FN5g7ubnS9IW', 'bookstore');
+		$this->link = new mysqli(DB_SERVER, DB_USER, DB_PASSWORD, DB_NAME);
 		mysqli_set_charset( $this->link, 'utf8');
 	
 	}
